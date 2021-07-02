@@ -147,6 +147,24 @@ switch rigName
         
         % base data directory settings
         ops.dataDirectory = 'D:\DATA\Cindy'; 
+    
+    case 'CYJS_EphysRig'
+        ops.rigName = rigName;
+        
+        % daq settings
+        ops.dev = 'dev1';
+        
+        % ball sensor offset
+        ops.ballSensorOffset = [1.6477, 1.65, 1.654];
+        ops.forwardGain = -110;
+        ops.viewAngleGain = 3.44;
+        
+        % reward calibration through init_variables.h
+        ops.useTeensyReward = false;
+        ops.rewardPulseDuration = 0.07;
+        
+        % base data directory settings
+        ops.dataDirectory = 'D:\DATA\Cindy'; 
 
     case '0' % try to find name automatically
         disp('Trying to identify computer automatically....');
@@ -167,6 +185,8 @@ switch rigName
                 rigName = 'Anna_2PStim';
             case 'DESKTOP-5HC5CBD' 
                 rigName = 'CYJS_BehaviorRig';
+            case 'DESKTOP-U9I9DDP'
+                rigName = 'CYJS_EphysRig';
             otherwise
                 error('Could not find this rig! Check getRigInfo.m');
         end
