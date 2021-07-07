@@ -1,7 +1,6 @@
 function [vr] = checkforTrialEndPosition_linearTrack(vr)
 % check for trial-terminating position and deliver reward
-if vr.inITI == 0 && (vr.position(2) > vr.mazeLength + vr.cueLength-3)
-    % check if mouse is in reward zone mediolaterally, if 
+if vr.inITI == 0 && (vr.position(2) > vr.mazeLength + vr.cueLength - 3)
     % Disable movement
     vr.dp = 0*vr.dp;
     % Enforce Reward Delay
@@ -15,6 +14,7 @@ if vr.inITI == 0 && (vr.position(2) > vr.mazeLength + vr.cueLength-3)
         vr.behaviorData(9,vr.trialIterations) = 1;
         vr.numRewards = vr.numRewards + 1;
         vr.itiDur = 3;
+        vr = updateLivePlots(vr); 
         vr = endVRTrial(vr);
     else
         vr.behaviorData(9,vr.trialIterations) = 0;

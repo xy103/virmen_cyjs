@@ -1,6 +1,6 @@
 function vr = makeTMazeFigs(vr,sessionData)
 %% Format Trials  
-nTrials = length(unique(sessionData(end,:)))-1
+nTrials = length(unique(sessionData(end,:)))-1; 
 figure; h1 = subplot(1,2,1); hold on; h2 = subplot(1,2,2); hold on;
 for trialNumber = 1:nTrials
     trialInd = find(sessionData(end,:)==trialNumber);
@@ -21,7 +21,7 @@ for trialNumber = 1:nTrials
         plot(sessionData(5,validTrialInd),sessionData(6,validTrialInd),'r');
         subplot(h2); 
         plot(sessionData(6,validTrialInd), sessionData(7,validTrialInd),'r');
-    end;
+    end
 end
 
 %% Plot Smoothed Trial Time
