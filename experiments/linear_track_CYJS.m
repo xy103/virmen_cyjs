@@ -8,6 +8,7 @@ function code = linearTrack
 code.initialization = @initializationCodeFun;
 code.runtime = @runtimeCodeFun;
 code.termination = @terminationCodeFun;
+end
 % End header code - DO NOT EDIT
 
 % --- INITIALIZATION code: executes before the ViRMEn engine starts.
@@ -17,6 +18,7 @@ vr.ops = getRigInfo();
 vr = makeVirmenDir(vr);
 vr = initTMaze(vr);
 vr = initDAQ(vr);
+end
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)
