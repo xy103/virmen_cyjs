@@ -2,8 +2,8 @@ function [vr] = giveReward(vr,nRew)
 %giveReward Function which delivers rewards 
 %(instantaneous pulses)
 %   nRew - number of rewards to deliver
-disp('Giving reward');
-disp(['Reward number', num2str(vr.numRewards)]);
+% disp('Giving reward');
+% disp(['Reward number', num2str(vr.numRewards)]);
 
 if vr.ops.useTeensyReward
     msgToSend = 3;

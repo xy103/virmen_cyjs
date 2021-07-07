@@ -14,7 +14,7 @@ end
 %disp(size(daqData));
 data = daqData(1:3) - vr.ops.ballSensorOffset;
 
-%disp(data);
+% disp(data);
 % data
 % 1: pitch
 % 2: roll
@@ -46,7 +46,7 @@ else
      %beta = 2*pi/V/2.5;
     velocity(1) = -alpha*data(1)*sin(vr.position(4));
     velocity(2) = alpha*data(1)*cos(vr.position(4));
-    velocity(4) = beta*data(3);
+    velocity(4) = beta * data(3);
     %disp('using this function');
     if flip
         velocity(4) = -beta*data(3);
@@ -54,5 +54,5 @@ else
 %     if vr.position(2)<vr.cueLength+vr.floorLength
 %         velocity(4)=0;
 %     end;
-%disp(velocity)
+disp(velocity)
 end

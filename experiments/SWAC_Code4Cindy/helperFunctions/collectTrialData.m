@@ -15,5 +15,7 @@ if vr.numTrials>1
     fprintf('\n Concatenated Data for %03.0f Trials \n',sum(trialData)),
     sessionDataName = fullfile(vr.fullPath,'sessionData');
     experData = vr.exper;
-    save(sessionDataName,'sessionData','experData'),
+    save(sessionDataName,'sessionData','experData');
+%     fprintf('saved to %s',sessionDataName)
+    close all
 end

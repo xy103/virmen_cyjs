@@ -1,7 +1,7 @@
 function vr = display_licks(vr)
-
-global mvData;
-lickInfo = mvData(4);
+% just redo this
+global daqData;
+lickInfo = daqData(4);
 
 yMin = 0; 
 yMax = 5;

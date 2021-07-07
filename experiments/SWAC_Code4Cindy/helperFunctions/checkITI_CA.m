@@ -1,4 +1,4 @@
-function vr = checkITI_CA(vr)
+ function vr = checkITI_CA(vr)
 
 % check whether ITI has elapsed and if so, start a new trial
 

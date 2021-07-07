@@ -109,6 +109,7 @@ vr = init_lickWindow(vr); % lick window?
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)    
 
+% this might be important for calibrating daq? 
 % if vr.SyncState == 1
 %     outputSingleScan(vr.aoSync,5);
 %     vr.SyncState = 0;
@@ -159,6 +160,7 @@ if vr.inITI == 0 && (vr.position(2) >= vr.rewardLength)
       
         % Check reward condition
         rightWorld = ismember(vr.currentWorld, [1,4,5,8,9,12,13,16]); % $ JS understand what the worlds are
+        % this can be much easier... so many worlds currently because of angled gratings
         rightArm = vr.position(1) > 0;
         if ~abs(rightWorld-rightArm) % rightWorld-rightArm == 0
             %deliver reward if appropriate

@@ -10,6 +10,7 @@ function vr = chooseNextWorld(vr)
             end
     else
         vr.currentWorld = randi([1 vr.nWorlds]);
+        fprintf("new world %i",vr.currentWorld)
     end
 
 end
