@@ -137,14 +137,23 @@ switch rigName
         ops.dev = 'dev1';
         
         % ball sensor offset
+<<<<<<< HEAD
+        ops.ballSensorOffset = [1.6448    1.6492    1.6496]; % calibrated 7/9/21
+        ops.forwardGain = -185; % calibrated 7/8/21 for 40 PSI
+=======
         ops.ballSensorOffset = [1.6477 - .0024, 1.65, 1.654 - .0039]; % calibrated 7/2/21
         ops.forwardGain = -110;
+>>>>>>> parent of eae4a6b (some changes in printing)
         ops.sideGain = 100; 
         ops.viewAngleGain = 3.44;
         
         % reward calibration through init_variables.h
         ops.useTeensyReward = false;
+<<<<<<< HEAD
+        ops.rewardPulseDuration = 0.06; % calibrated 7/9/21 for h20 at 10 mL
+=======
         ops.rewardPulseDuration = 0.07; % calibrated 7/2/21
+>>>>>>> parent of eae4a6b (some changes in printing)
         
         % base data directory settings
         ops.dataDirectory = 'D:\DATA\Cindy'; 

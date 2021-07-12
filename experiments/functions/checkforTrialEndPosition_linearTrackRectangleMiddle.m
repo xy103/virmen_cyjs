@@ -28,6 +28,10 @@ if vr.inITI == 0 && (vr.position(2) > vr.mazeLength + 5)
         vr.itiDur = vr.itiCorrect;
         vr = updateLivePlots(vr); 
         vr = endVRTrial(vr);
+<<<<<<< HEAD
+        fprintf("%i trials complete \t %i rewards received \n",vr.numTrials,vr.numRewards)
+=======
+>>>>>>> parent of eae4a6b (some changes in printing)
     else
         vr.behaviorData(9,vr.trialIterations) = 0;
         vr.behaviorData(8,vr.trialIterations) = -1;

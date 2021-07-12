@@ -12,13 +12,14 @@ function vr = updateLivePlots(vr)
     
     vr.trial_world_lickY = [vr.trial_world_lickY ; ...
                 ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + vr.currentWorld lick_y']; 
-%     t = cumsum(behavData(10,:)); 
+    t = cumsum(behavData(10,:)); 
 %     rew_time = t(behavData(9,:) == 1); 
     
     % Lick trace from last trial
     subplot(2,2,1);cla
-    plot(y,lick_trace,'color',[.2,.8,.2],'linewidth',1) % lick signal
-    scatter(lick_y,lick_v,10,[0,0,0]) % estimated lick event signals
+%     plot(y,lick_trace,'color',[.2,.8,.2],'linewidth',1) % lick signal
+    plot(t,lick_trace,'color',[.2,.8,.2],'linewidth',1) % lick signal
+%     scatter(lick_y,lick_v,10,[0,0,0]) % estimated lick event signals
     title(sprintf("Trial %i Lick Behavior",vr.numTrials+1))
     
     % Lick raster colored by trial type
