@@ -157,7 +157,7 @@ switch rigName
         
         % ball sensor offset
         ops.ballSensorOffset = [1.6477, 1.65, 1.654];
-        ops.forwardGain = -110;
+        ops.forwardGain = -170;
         ops.sideGain = 100; 
         ops.viewAngleGain = 3.44;
         
