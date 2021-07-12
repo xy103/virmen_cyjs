@@ -6,7 +6,6 @@ function velocity = moveWithTwoSensors_fixedHD_js(vr)
     if isempty(daqData)
         return
     end
-
     % Access global mvData
     % Teensy can send voltage between 0 and 3.3V, so that ~1.65 V
     % corresponds to no movement. This voltage needs calibration
