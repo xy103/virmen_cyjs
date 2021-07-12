@@ -162,7 +162,7 @@ switch rigName
         ops.viewAngleGain = 3.44;
         
         % reward calibration through init_variables.h
-        ops.useTeensyReward = true;
+        ops.useTeensyReward = false;
         ops.rewardPulseDuration = 0.07;
         
         % base data directory settings
