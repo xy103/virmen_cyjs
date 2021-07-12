@@ -10,10 +10,6 @@ function vr = chooseNextWorld(vr)
             end
     else
         vr.currentWorld = randi([1 vr.nWorlds]);
-<<<<<<< HEAD
-=======
-        fprintf("new world %i",vr.currentWorld)
->>>>>>> parent of eae4a6b (some changes in printing)
     end
 
 end
