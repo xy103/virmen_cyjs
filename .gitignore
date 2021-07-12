@@ -4,3 +4,4 @@ loadPPCexample.asv
 shapes/shapeRegularPolygon_new.m
 transformations/transformToroidalMex_new.c
 *.asv
+experiments/functions/getRigInfo.m
