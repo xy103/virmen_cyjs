@@ -29,7 +29,7 @@ vr.floorLength = eval(vr.exper.variables.floorLength);
 vr.ML_RewardZone = -(vr.floorWidth*vr.frac_TargetWall)/2 : (vr.floorWidth*vr.frac_TargetWall)/2;
 
 % set parameters
-vr.rewardDelay = 1; % delay of 1s from reward zone entry until reward trigger
+vr.rewardDelay = .2; % delay of 1s from reward zone entry until reward trigger
 vr.friction = 0;  %.5 value adjust friction in collisions
 vr.itiCorrect = 1;  
 vr.itiMiss = 0;

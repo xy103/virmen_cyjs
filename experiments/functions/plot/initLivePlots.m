@@ -9,15 +9,18 @@ function vr = initLivePlots(vr)
     % plot settings
     vr.livePlot_opt = struct; 
     vr.livePlot_opt.minLickV = 1; % min value for lick detection
+    vr.livePlot_opt.lickV = 0.5; % voltage for lick detection
     vr.livePlot_opt.worldColors = lines(2); % trial type colors for lick raster
     vr.livePlot_opt.initRasterMaxTrials = 50; 
     
     % initialize data for plots 
     vr.trial_world_lickY = []; 
+    vr.saved_x = []; 
+    vr.saved_y = {}; 
     
     % initialize plots
     subplot(2,2,1);hold on
-    xlabel("Position (cm)")
+    xlabel("Time (seconds)")
     ylabel("Lick Signal (V)")
 
     subplot(2,2,3);hold on 
@@ -25,6 +28,7 @@ function vr = initLivePlots(vr)
     ylabel("Trial #")
     ylim([0,vr.livePlot_opt.initRasterMaxTrials])
     set(gca, 'YDir','reverse')
+    title("Lick Raster Plot")
     
     subplot(2,2,[2 4]); hold on
     xlabel("X Position (cm)")

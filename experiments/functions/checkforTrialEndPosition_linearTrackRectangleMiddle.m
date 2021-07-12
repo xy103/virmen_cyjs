@@ -26,12 +26,12 @@ if vr.inITI == 0 && (vr.position(2) > vr.mazeLength + 5)
         end
         
         vr.itiDur = vr.itiCorrect;
-        vr = updateLivePlots(vr); 
+%         vr = updateLivePlots(vr); % moved to waitForNextTrial_linTrack
         vr = endVRTrial(vr);
         fprintf("%i trials complete \t %i rewards received \n",vr.numTrials,vr.numRewards)
     else
         vr.behaviorData(9,vr.trialIterations) = 0;
-        vr.behaviorData(8,vr.trialIterations) = -1;
+        vr.behaviorData(8,vr.trialIterations) = -1; % reward delay
     end
 else
     vr.behaviorData(9,vr.trialIterations) = 0;

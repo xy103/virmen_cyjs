@@ -7,7 +7,10 @@ function vr = waitForNextTrial_linTrack(vr)
         vr.itiTime = toc(vr.itiStartTime);
 
         if vr.itiTime > vr.itiDur
-
+            %save trial data
+            vr = updateLivePlots(vr); % moved 7/12/21 from checkforTrialEndPosition
+            vr = saveTrialData(vr); % moved 7/12/21 by JS from endVRTrial
+            vr.numTrials = vr.numTrials + 1; % moved 7/12/21 by JS
             vr.inITI = 0;
             vr = chooseNextWorld(vr);
             vr.position = vr.worlds{vr.currentWorld}.startLocation;
