@@ -13,16 +13,19 @@ function vr = updateLivePlots(vr)
     lick_ix = find(lick_trace >= vr.livePlot_opt.lickV);
     lick_y = y(lick_ix(lick_ix < length(y))); % y does not extend into the ITI
     lick_t = t(lick_ix); 
+    lick_t_ITI = t(lick_ix(lick_ix >= rew_delay_start_ix)) - rew_delay_start; 
     lick_v = lick_trace(lick_ix); 
     n_licks = length(lick_y); % note that this ends at trial end 
+    n_licks_ITI = length(lick_t_ITI); 
     
     vr.trial_world_lickY = [vr.trial_world_lickY ; ...
-                ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + vr.currentWorld lick_y']; 
+                ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + vr.currentWorld lick_y'];
+    vr.trial_world_ITIlickT = [vr.trial_world_ITIlickT ; ...
+                ones(n_licks_ITI,1) + vr.numTrials zeros(n_licks_ITI,1) + vr.currentWorld lick_t_ITI'];
 %     rew_time = t(behavData(9,:) == 1); 
     
     % Lick trace from last trial
     subplot(2,2,1);cla
-%     plot(y,lick_trace,'color',[.2,.8,.2],'linewidth',1) % lick signal
     plot(t,lick_trace,'color',[.2,.8,.2],'linewidth',1) % lick signal
     scatter(lick_t,lick_v,10,[0,0,0]) % estimated lick event signals
     % add patches to indicate trial interval
@@ -36,8 +39,12 @@ function vr = updateLivePlots(vr)
     title(sprintf("Trial %i Lick Behavior",vr.numTrials+1))
 
     % Lick raster colored by trial type
-    subplot(2,2,3); cla
+    subplot(8,8,[33:35 41:43 49:51 57:59]); cla
     gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,[],5)
+    set(gca, 'YDir','reverse')
+    ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
+    subplot(8,8,[36 44 52 60]); cla
+    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,[],5)
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     

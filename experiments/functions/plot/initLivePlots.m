@@ -17,6 +17,7 @@ function vr = initLivePlots(vr)
     
     % initialize data for plots 
     vr.trial_world_lickY = []; 
+    vr.trial_world_ITIlickT = []; 
     vr.live_saved_xy = cell(vr.nWorlds,1); % or any # of worlds
     
     % initialize plots
@@ -24,12 +25,17 @@ function vr = initLivePlots(vr)
     xlabel("Time (seconds)")
     ylabel("Lick Signal (V)")
 
-    subplot(2,2,3);hold on 
+    subplot(8,8,[33:35 41:43 49:51 57:59]);hold on 
     xlabel("Position (cm)") 
     ylabel("Trial #")
     ylim([0,vr.livePlot_opt.initRasterMaxTrials])
     set(gca, 'YDir','reverse')
-    title("Lick Raster Plot")
+    subplot(8,8,[36 44 52 60]);hold on
+    xlabel("Time in ITI (sec)") 
+    ylabel("Trial #")
+    ylim([0,vr.livePlot_opt.initRasterMaxTrials])
+    xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMiss)])
+    set(gca, 'YDir','reverse')
     
     subplot(2,2,[2 4]); hold on
     xlabel("X Position (cm)")
