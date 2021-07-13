@@ -12,11 +12,12 @@ function vr = initLivePlots(vr)
     vr.livePlot_opt.lickV = 0.5; % voltage for lick detection
     vr.livePlot_opt.worldColors = lines(2); % trial type colors for lick raster
     vr.livePlot_opt.initRasterMaxTrials = 50; 
+    vr.livePlot_opt.n_save_trials = 10;
+    vr.livePlot_opt.color_gradient_order = ["Blues" "Reds" "Greens" "Oranges"];
     
     % initialize data for plots 
     vr.trial_world_lickY = []; 
-    vr.saved_x = []; 
-    vr.saved_y = {}; 
+    vr.live_saved_xy = cell(vr.nWorlds,1); % or any # of worlds
     
     % initialize plots
     subplot(2,2,1);hold on
