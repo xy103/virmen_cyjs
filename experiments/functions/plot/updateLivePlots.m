@@ -18,6 +18,11 @@ function vr = updateLivePlots(vr)
     n_licks = length(lick_y); % note that this ends at trial end 
     n_licks_ITI = length(lick_t_ITI); 
     
+    % add to reward consumed count if rewarded and we see some lick signal
+    if ~isempty(find(behavData(9,:) == 1,1)) && (n_licks + n_licks_ITI > 0)
+       vr.numRewards_consumed = vr.numRewards_consumed + 1;  
+    end
+    
     vr.trial_world_lickY = [vr.trial_world_lickY ; ...
                 ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + vr.currentWorld lick_y'];
     vr.trial_world_ITIlickT = [vr.trial_world_ITIlickT ; ...
@@ -40,11 +45,11 @@ function vr = updateLivePlots(vr)
 
     % Lick raster colored by trial type
     subplot(8,8,[33:35 41:43 49:51 57:59]); cla
-    gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,[],5)
+    gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,[],3,'off')
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     subplot(8,8,[36 44 52 60]); cla
-    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,[],5)
+    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,[],3,'off')
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     

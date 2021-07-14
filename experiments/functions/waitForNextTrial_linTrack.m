@@ -11,6 +11,7 @@ function vr = waitForNextTrial_linTrack(vr)
             vr = updateLivePlots(vr); % moved 7/12/21 from checkforTrialEndPosition
             vr = saveTrialData(vr); % moved 7/12/21 by JS from endVRTrial
             vr.numTrials = vr.numTrials + 1; % moved 7/12/21 by JS
+                    fprintf("%i trials complete \t %i rewards received \t %i rewards consumed \n",vr.numTrials,vr.numRewards,vr.numRewards_consumed)
             vr.inITI = 0;
             vr = chooseNextWorld(vr);
             vr.position = vr.worlds{vr.currentWorld}.startLocation;
