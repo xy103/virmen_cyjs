@@ -1,7 +1,7 @@
 function vr = collectBehaviorIter_full(vr)
 
-global mvData;
-lickInfo = mvData(4);
+global daqData;
+lickInfo = daqData(4);
 
 thisIter(1) = vr.currentWorld;
 thisIter(2:4) = vr.velocity([1,2,4]); % row 4 will be empty with fixed view angle movement function
@@ -17,6 +17,6 @@ thisIter(7) = lickInfo; % store signal from lick detector (ca 0 for no contact, 
 vr.trialIterations = vr.trialIterations + 1;
 vr.behaviorData([1:8,10],vr.trialIterations) = thisIter([1:8,10])';
 
-vr.behaviorData( 11:13, vr.trialIterations) = mvData(1:3); % record raw ball signal as well
+vr.behaviorData( 11:13, vr.trialIterations) = daqData(1:3); % record raw ball signal as well
 
 

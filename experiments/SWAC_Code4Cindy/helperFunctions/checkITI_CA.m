@@ -13,22 +13,15 @@ if vr.inITI == 1
         %save trial data
         vr = saveTrialData(vr);
 
-        % set up next trial:
-        % check whether switch should be introduced
-
-        % vr = checkSwitch_Condition(vr); % used in PhotoStim experiments
+        % set up next trial, check whether switch should be introduced
         vr = dynamicSwitching_new_CA(vr);
         
         % update block
         vr.blockWorlds = vr.contingentBlocks(vr.switchBlock,:);
-        % change to noChecker maze & angled maze probabilistically
+        % change to noChecker maze probabilistically
         rand_checker = rand;
-        rand_grating = rand;
-        if rand_checker < vr.fractionNoChecker
+        if rand_checker > vr.fractionNoChecker % give checker trial
             vr.blockWorlds = vr.blockWorlds + 4;
-        end
-        if rand_grating < vr.fractionAngledGrating
-            vr.blockWorlds = vr.blockWorlds +  8;
         end
 
         vr = chooseNextWorld_CA(vr);

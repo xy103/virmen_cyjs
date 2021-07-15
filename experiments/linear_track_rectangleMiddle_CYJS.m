@@ -1,4 +1,4 @@
- function code = SC_linearTrack_CA_Rig2
+ function code = linear_track_rectangleMiddle_CYJS
 % Linear Track   Code for the ViRMEn experiment Linear Track.
 %   code = Linear Track   Returns handles to the functions that ViRMEn
 %   executes during engine initialization, runtime and termination.
