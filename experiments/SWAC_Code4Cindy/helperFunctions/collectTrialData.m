@@ -14,7 +14,7 @@ if vr.numTrials>1
 
     fprintf('\n Concatenated Data for %03.0f Trials \n',sum(trialData)),
     sessionDataName = fullfile(vr.fullPath,'sessionData');
-    experData = vr.exper;
+    experData = struct(vr.exper); % JS changed 7/16/21 for python compatibility
     save(sessionDataName,'sessionData','experData');
 %     fprintf('saved to %s',sessionDataName)
     close all

@@ -34,8 +34,9 @@ if vr.inITI == 1
         vr.inRewardZone = 0;
         vr.trialTimer = tic;
         vr.trialStartTime = rem(now,1);
+
+        vr = printText2CommandLine(vr);
     end
-    
 end
 
 end

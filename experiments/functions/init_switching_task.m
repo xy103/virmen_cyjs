@@ -7,6 +7,8 @@ function vr = init_switching_task(vr)
     vr.backgroundR_val = eval(vr.exper.variables.backgroundR_val);
     vr.backgroundG_val = eval(vr.exper.variables.backgroundG_val);
     vr.backgroundB_val = eval(vr.exper.variables.backgroundB_val);
+    
+    vr.world_names = cellfun(@(x) x.name,vr.exper.worlds,'UniformOutput',false); 
 
     % evaluate maze geometry parameters  //////////////
     floorLength = eval(vr.exper.variables.floorLength);

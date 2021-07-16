@@ -24,7 +24,10 @@ function vr = initializationCodeFun(vr)
 
     % General setup functions
     vr = initDAQ(vr);
-%     vr = init_lickWindow(vr); % lick window?
+    
+%     Update Textboxes
+    vr = printText2CommandLine(vr);
+    %     vr = init_lickWindow(vr); % lick window?
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)    

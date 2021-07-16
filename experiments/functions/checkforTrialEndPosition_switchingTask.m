@@ -54,9 +54,6 @@ function vr = checkforTrialEndPosition_switchingTask(vr)
 
             % start the ITI
             vr = startITI_CA_Rig2(vr); 
-            % Update Textboxes
-            vr = printText2CommandLine(vr); % JS moved here so that it prints less
-
         else
             vr.behaviorData(9,vr.trialIterations) = 0;
             vr.behaviorData(8,vr.trialIterations) = -1;
