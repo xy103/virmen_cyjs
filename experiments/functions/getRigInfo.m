@@ -144,7 +144,7 @@ switch rigName
         
         % reward calibration through init_variables.h
         ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.05; % calibrated 7/12/21 for h20 at 10 mL
+        ops.rewardPulseDuration = 0.045; % calibrated 7/19
         
         % base data directory settings
         ops.dataDirectory = 'D:\DATA\Cindy'; 
