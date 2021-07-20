@@ -54,17 +54,6 @@ function vr = updateLivePlots(vr)
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     
     % Plot position traces colored by trial type
-    subplot(2,2,[2 4])
     vr = fading_runningTraj_livePlot(vr); 
-%     if vr.numTrials > 0
-%         children = get(gca, 'children');
-%         delete(children(1)); % delete last trace
-%         plot(vr.prev_x,vr.prev_y,'color',vr.livePlot_opt.worldColors(vr.prev_world,:),'linewidth',.5)
-%     end
-%     plot(x,y,'color',vr.livePlot_opt.worldColors(vr.currentWorld,:),'linewidth',1.5)
-%     vr.prev_x = x; 
-%     vr.prev_y = y; 
-%     vr.prev_world = vr.currentWorld; 
-     
 end
 

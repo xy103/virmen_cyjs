@@ -10,6 +10,8 @@ if vr.inITI == 1
 
         % increase numtrials counter
         vr.numTrials = vr.numTrials + 1;
+        % update live plots
+        vr = updateLivePlots(vr);
         %save trial data
         vr = saveTrialData(vr);
 

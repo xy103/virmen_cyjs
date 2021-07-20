@@ -11,11 +11,12 @@ function vr = init_switching_task(vr)
     vr.world_names = cellfun(@(x) x.name,vr.exper.worlds,'UniformOutput',false); 
 
     % evaluate maze geometry parameters  //////////////
-    floorLength = eval(vr.exper.variables.floorLength);
-    funnelLength = eval(vr.exper.variables.funnelLength);
+    vr.floorLength = eval(vr.exper.variables.floorLength);
+    vr.funnelLength = eval(vr.exper.variables.funnelLength);
+    vr.floorWidth = eval(vr.exper.variables.floorWidth);
     vr.funnelWidth = eval(vr.exper.variables.funnelWidth);
-    vr.hideCuePast = floorLength + funnelLength + 5;
-    vr.rewardLength = 5 + floorLength + funnelLength;
+    vr.hideCuePast = vr.floorLength + vr.funnelLength + 5;
+    vr.rewardLength = 5 + vr.floorLength + vr.funnelLength;
     % Identify indices for cue target walls (for hiding)
     vr = getHidingTargetVertices_cyjs(vr); 
 
@@ -57,7 +58,7 @@ function vr = init_switching_task(vr)
     vr.fractionNoChecker = eval(vr.exper.variables.fractionNoChecker);
 
     rand_checker = rand;
-    if rand_checker < vr.fractionNoChecker
+    if rand_checker > vr.fractionNoChecker
         vr.currentWorld = vr.currentWorld + 4;
     end
 
