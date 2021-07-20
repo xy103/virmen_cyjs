@@ -32,7 +32,7 @@ function vr = init_switching_task(vr)
     % enable trial selection counteracting a choice bias
     vr.ContraBias = eval(vr.exper.variables.contraBias); % 0 if no bias counteracting enforced, 1 if enforced 
     vr.inds2check = eval(vr.exper.variables.inds2check); % choices to check for bias correction
-    vr.pastChoices = {}; % vector that will be a list of choices made
+    vr.pastChoices = []; % vector that will be a list of choices made
 
     % eval params for switching task
     vr.nWorlds = length(vr.worlds); 
@@ -47,6 +47,7 @@ function vr = init_switching_task(vr)
     vr.minWindow_4Switch = eval(vr.exper.variables.minWindow_Switch);
     vr.Rewards = [];
     vr.Switches = [];
+    vr.Checker_trial = []; % visually guided trial? 
     initBlock = eval(vr.exper.variables.initBlock); % sets the initial block: alternate daily
     vr.switchBlock = initBlock; 
 

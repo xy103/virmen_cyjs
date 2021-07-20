@@ -6,7 +6,12 @@ function vr = initLivePlots(vr)
     fig_height = 400;
     vr.livePlotFig = figure('color','white',...
     'position',[screenSize(3) - fig_width,screenSize(4) - fig_height - 80,fig_width,fig_height]);
-
+    
+    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+        vr.performanceFig = figure('color','white',...
+        'position',[screenSize(3) - fig_width,screenSize(4) - fig_height - 80,fig_width,fig_height]);
+    end
+    
     % plot settings
     vr.livePlot_opt = struct; 
     vr.livePlot_opt.minLickV = 1; % min value for lick detection
