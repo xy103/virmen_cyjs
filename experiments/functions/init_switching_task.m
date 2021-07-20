@@ -69,7 +69,7 @@ function vr = init_switching_task(vr)
 
     % Gain (JS from initTMaze)
     vr.yawGain = 1;
-    vr.pitchGain = 1;
+    vr.pitchGain = 20 ; %  1;
     vr.targetRevealed = false; 
     
     % initialize a bunch of counters

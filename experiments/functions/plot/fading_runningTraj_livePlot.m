@@ -36,9 +36,12 @@ function vr = fading_runningTraj_livePlot(vr)
             for i_grp = ((1:2)+plot_counter)
                 % this weird stuff is due to how cbrewer works
                 i_grp_colors = flipud(cbrewer('seq',vr.livePlot_opt.color_gradient_order(i_grp),max(3,n_trials_grp(i_grp)),'spline'));
-                i_grp_colors = i_grp_colors(end-n_trials_grp(i_grp)+1:end,:);
+                i_grp_colors = min(1,i_grp_colors(end-n_trials_grp(i_grp)+1:end,:));
                 new_cmap = [new_cmap ; i_grp_colors];
             end
+            disp(new_cmap)
+            disp(i_grp_colors)
+            disp(n_trials_grp)
             % update color order
             set(gca, 'ColorOrder', new_cmap, 'NextPlot', 'replacechildren');
             cla;draw_Ymaze(vr);hold on
