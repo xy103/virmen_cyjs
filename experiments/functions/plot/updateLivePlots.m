@@ -42,22 +42,28 @@ function vr = updateLivePlots(vr)
     plot(t,lick_trace,'color',[.2,.8,.2],'linewidth',1) % lick signal
     scatter(lick_t,lick_v,10,[0,0,0]) % estimated lick event signals
     % add patches to indicate trial interval
-    v_ISI = [0 -1; 0 0; rew_delay_start 0; rew_delay_start -1];
-    v_delay = [rew_delay_start -1; rew_delay_start 0; ITI_start 0; ITI_start -1]; 
-    v_ITI = [ITI_start -1; ITI_start 0; t(end) 0; t(end) -1]; 
-    patch('Faces',[1 2 3 4],'Vertices',v_ISI,'FaceColor',[1 1 1]);
-    patch('Faces',[1 2 3 4],'Vertices',v_delay,'FaceColor',[.5 .5 .5],'FaceAlpha',.5);
-    patch('Faces',[1 2 3 4],'Vertices',v_ITI,'FaceColor',[.2 .2 .2],'FaceAlpha',.5);
+    try
+        v_ISI = [0 -1; 0 0; rew_delay_start 0; rew_delay_start -1];
+        v_delay = [rew_delay_start -1; rew_delay_start 0; ITI_start 0; ITI_start -1]; 
+        v_ITI = [ITI_start -1; ITI_start 0; t(end) 0; t(end) -1]; 
+        patch('Faces',[1 2 3 4],'Vertices',v_ISI,'FaceColor',[1 1 1]);
+        patch('Faces',[1 2 3 4],'Vertices',v_delay,'FaceColor',[.5 .5 .5],'FaceAlpha',.5);
+        patch('Faces',[1 2 3 4],'Vertices',v_ITI,'FaceColor',[.2 .2 .2],'FaceAlpha',.5);
+    catch 
+        fprintf("\n Error in drawing trial period patches \n")
+        disp(rew_delay_start)
+        disp(ITI_start)
+    end
     ylim([-1 5]); 
     title(sprintf("Trial %i Lick Behavior",vr.numTrials+1))
 
     % Lick raster colored by trial type
     subplot(8,8,[33:35 41:43 49:51 57:59]); cla;hold on
-    gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'on')
+    gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'off')
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     subplot(8,8,[36 44 52 60]); cla
-    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'on')
+    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'off')
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     
