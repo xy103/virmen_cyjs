@@ -28,6 +28,6 @@ function velocity = moveWithTwoSensors_fixedHD_js(vr)
     else
         velocity(1) = data(2) * vr.ops.sideGain;
     end
-    velocity(2) = data(1) * vr.ops.forwardGain * 20;
+    velocity(2) = data(1) * vr.ops.forwardGain;
     velocity(4) = 0; % fix head direction
 end

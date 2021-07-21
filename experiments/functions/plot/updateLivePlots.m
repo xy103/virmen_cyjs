@@ -53,12 +53,11 @@ function vr = updateLivePlots(vr)
 
     % Lick raster colored by trial type
     subplot(8,8,[33:35 41:43 49:51 57:59]); cla;hold on
-    gscatter(zeros(8,1),zeros(8,1),1:8,vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'off')
-    gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'off')
+    gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'on')
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     subplot(8,8,[36 44 52 60]); cla
-    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'off')
+    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'on')
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     
