@@ -48,6 +48,7 @@ function vr = init_switching_task(vr)
     vr.Rewards = [];
     vr.Switches = [];
     vr.Checker_trial = []; % visually guided trial? 
+    vr.pastCorrect = []; % what was the correct choice?
     initBlock = eval(vr.exper.variables.initBlock); % sets the initial block: alternate daily
     vr.switchBlock = initBlock; 
 
@@ -60,7 +61,10 @@ function vr = init_switching_task(vr)
 
     rand_checker = rand;
     if rand_checker > vr.fractionNoChecker
+        vr.Checker_trial = [vr.Checker_trial 1];
         vr.currentWorld = vr.currentWorld + 4;
+    else 
+        vr.Checker_trial = [vr.Checker_trial 0];
     end
 
     % init ITI and trial counting

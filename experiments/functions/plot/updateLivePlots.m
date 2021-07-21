@@ -1,7 +1,7 @@
 function vr = updateLivePlots(vr)
     % Update online behavioral metric plots
     behavData = vr.behaviorData(:,1:vr.trialIterations);
-    vr.livePlotFig;
+    figure(vr.livePlotFig);
     rew_delay_start_ix = find(behavData(8,:) == -1,1); 
     x = behavData(5,1:rew_delay_start_ix);
     y = behavData(6,1:rew_delay_start_ix);
@@ -23,10 +23,18 @@ function vr = updateLivePlots(vr)
        vr.numRewards_consumed = vr.numRewards_consumed + 1;  
     end
     
-    vr.trial_world_lickY = [vr.trial_world_lickY ; ...
-                ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + vr.currentWorld lick_y'];
-    vr.trial_world_ITIlickT = [vr.trial_world_ITIlickT ; ...
-                ones(n_licks_ITI,1) + vr.numTrials zeros(n_licks_ITI,1) + vr.currentWorld lick_t_ITI'];
+    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+        this_tt = 1 + (1 - vr.Rewards(end)) + 2 * strcmp(vr.pastCorrect(end),"R") + 4 * vr.Checker_trial(end); % separate by correct, choice, and checker
+        vr.trial_world_lickY = [vr.trial_world_lickY ; ...
+            ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + this_tt lick_y'];
+        vr.trial_world_ITIlickT = [vr.trial_world_ITIlickT ; ...
+            ones(n_licks_ITI,1) + vr.numTrials zeros(n_licks_ITI,1) + this_tt lick_t_ITI'];
+    elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+        vr.trial_world_lickY = [vr.trial_world_lickY ; ...
+            ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + vr.currentWorld lick_y'];
+        vr.trial_world_ITIlickT = [vr.trial_world_ITIlickT ; ...
+            ones(n_licks_ITI,1) + vr.numTrials zeros(n_licks_ITI,1) + vr.currentWorld lick_t_ITI'];
+    end
 %     rew_time = t(behavData(9,:) == 1); 
     
     % Lick trace from last trial
@@ -44,16 +52,53 @@ function vr = updateLivePlots(vr)
     title(sprintf("Trial %i Lick Behavior",vr.numTrials+1))
 
     % Lick raster colored by trial type
-    subplot(8,8,[33:35 41:43 49:51 57:59]); cla
-    gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,[],3,'off')
+    subplot(8,8,[33:35 41:43 49:51 57:59]); cla;hold on
+    gscatter(zeros(8,1),zeros(8,1),1:8,vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'off')
+    gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'off')
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     subplot(8,8,[36 44 52 60]); cla
-    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,[],3,'off')
+    gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3,'off')
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     
     % Plot position traces colored by trial type
     vr = fading_runningTraj_livePlot(vr); 
+    
+    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+        figure(vr.performanceFig);
+        subplot(1,3,1)
+        cla; hold on;
+        plot(smoothdata(vr.Rewards,'gaussian',15),'k','linewidth',1.5)
+        subplot(1,3,2)
+        cla; hold on;
+        rewards_L = vr.Rewards; 
+        rewards_L(vr.pastCorrect == "R") = nan; 
+        rewards_R = vr.Rewards; 
+        rewards_R(vr.pastCorrect == "L") = nan; 
+        plot(smoothdata(rewards_L,'gaussian',15),'b','linewidth',1)
+        plot(smoothdata(rewards_R,'gaussian',15),'r','linewidth',1)
+        legend("Left Worlds","Right Worlds",'AutoUpdate','off')
+        subplot(1,3,3)
+        cla; hold on;
+        rewards_checker = vr.Rewards; 
+        rewards_checker(vr.Checker_trial == 0) = nan; 
+        rewards_noChecker = vr.Rewards; 
+        rewards_noChecker(vr.Checker_trial == 1) = nan;
+        plot(smoothdata(rewards_checker,'gaussian',15),'k:','linewidth',1)
+        plot(smoothdata(rewards_noChecker,'gaussian',15),'k-','linewidth',1)
+        legend("Checker Trials","NoChecker Trials",'AutoUpdate','off')
+        
+        for i_subplot = 1:3
+            subplot(1,3,i_subplot)
+            xlim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
+            ylim([0 1])
+            yline(.5,'--')
+            if ~isempty(vr.switches)
+                xline(vr.switches)
+            end
+        end
+        figure(vr.livePlotFig);
+    end
 end
 

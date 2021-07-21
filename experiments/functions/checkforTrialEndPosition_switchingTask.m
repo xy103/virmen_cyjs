@@ -1,4 +1,4 @@
-function vr = checkforTrialEndPosition_switchingTask(vr)
+ function vr = checkforTrialEndPosition_switchingTask(vr)
     % Check if we've reached the end of a trial in SYT switching task
     % JS 7/15/21
     % Note vr.rewardLength = 5 + floorLength + funnelLength; from init_switching_task
@@ -25,14 +25,19 @@ function vr = checkforTrialEndPosition_switchingTask(vr)
             % keep track of choices in past to identify bias and add more
             % worlds with opposite choice to make
             if vr.position(1) > 0
-                choiceMade = 'R';
+                choiceMade = "R";
             else
-                choiceMade = 'L';
+                choiceMade = "L";
             end
             vr.pastChoices = [vr.pastChoices choiceMade];
 
             % Check reward condition
             rightWorld = ismember(vr.currentWorld, [1 3 5 7]); % right is correct in odd worlds
+            if rightWorld 
+               vr.pastCorrect = [vr.pastCorrect "R"];
+            else
+                vr.pastCorrect = [vr.pastCorrect "L"]; 
+            end
             rightArm = vr.position(1) > 0;
             if ~abs(rightWorld-rightArm) % rightWorld-rightArm == 0
                 %deliver reward if appropriate

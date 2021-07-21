@@ -39,9 +39,6 @@ function vr = fading_runningTraj_livePlot(vr)
                 i_grp_colors = min(1,i_grp_colors(end-n_trials_grp(i_grp)+1:end,:));
                 new_cmap = [new_cmap ; i_grp_colors];
             end
-            disp(new_cmap)
-            disp(i_grp_colors)
-            disp(n_trials_grp)
             % update color order
             set(gca, 'ColorOrder', new_cmap, 'NextPlot', 'replacechildren');
             cla;draw_Ymaze(vr);hold on

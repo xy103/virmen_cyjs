@@ -4,7 +4,7 @@ currentdir = cd;
 
 if vr.debugMode
     vr.mouseNum = randi(1e6,1)+1e3;
-    vr.basePath = 'D :\DATA\Debug';
+    vr.basePath = 'D:\DATA\Debug';
 else    
     mouseInfo = inputdlg('Input the Mouse Number: ');
     vr.mouseNum = str2double(mouseInfo{1});

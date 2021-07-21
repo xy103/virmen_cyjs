@@ -62,4 +62,4 @@ if ~vr.debugMode
     delete(vr.ai),
     delete(vr.ao),
 end
-[vr,sessionData] = collectTrialData(vr);
+[vr,~] = collectTrialData(vr);

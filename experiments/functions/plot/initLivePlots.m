@@ -8,15 +8,31 @@ function vr = initLivePlots(vr)
     'position',[screenSize(3) - fig_width,screenSize(4) - fig_height - 80,fig_width,fig_height]);
     
     if strcmp(vr.exper_name,'dynSwitching_CYJS')
+        performance_fig_width = 700;         
+        performance_fig_height = 250; 
         vr.performanceFig = figure('color','white',...
-        'position',[screenSize(3) - fig_width,screenSize(4) - fig_height - 80,fig_width,fig_height]);
+        'position',[screenSize(3) - performance_fig_width,screenSize(4) - fig_height - performance_fig_height - 80,performance_fig_width, performance_fig_height]);
     end
     
     % plot settings
     vr.livePlot_opt = struct; 
     vr.livePlot_opt.minLickV = 1; % min value for lick detection
     vr.livePlot_opt.lickV = 0.5; % voltage for lick detection
-    vr.livePlot_opt.worldColors = lines(vr.nWorlds); % trial type colors for lick raster
+    if strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+        vr.livePlot_opt.worldColors = lines(vr.nWorlds); % trial type colors for lick raster 
+        vr.livePlot_opt.worldSymbols = '..'; % trial type symbols for lick raster 
+    elseif strcmp(vr.exper_name,'dynSwitching_CYJS')
+        ylOrBr = cbrewer('seq','YlOrBr',10,'spline'); 
+        greys = cbrewer('seq','Greys',10,'spline'); 
+        blues = cbrewer('seq','Blues',10,'spline');
+        reds = cbrewer('seq','Reds',10,'spline');
+        blue = blues(8,:); 
+        red = reds(8,:); 
+        grey = greys(8,:);
+        brown = ylOrBr(8,:); 
+        vr.livePlot_opt.worldColors = [blue ; blue ; red ; red ; grey ; grey ; brown ; brown]; % trial type colors for lick raster 
+        vr.livePlot_opt.worldSymbols = 'oxoxoxoxoxoxoxox'; % trial type symbols for lick raster 
+    end
     vr.livePlot_opt.initRasterMaxTrials = 50; 
     vr.livePlot_opt.n_save_trials = 10;
     vr.livePlot_opt.color_gradient_order = ["Blues" "Reds" "Greys" "YlOrBr"];
@@ -30,6 +46,7 @@ function vr = initLivePlots(vr)
         vr.live_saved_xy = cell(vr.nWorlds,1); 
     end
     
+    figure(vr.livePlotFig)
     % initialize plots
     subplot(2,2,1);hold on
     xlabel("Time (seconds)")
@@ -73,6 +90,27 @@ function vr = initLivePlots(vr)
         xlim([-vr.floorWidth/2 vr.floorWidth/2])
         xlabel("X Position (cm)")
         ylabel("Y Position (cm)")
+    end
+    
+    % set up performance plot figure
+    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+        figure(vr.performanceFig)
+        subplot(1,3,1);hold on 
+        xlim([0 vr.livePlot_opt.initRasterMaxTrials]) 
+        ylim([0 1])
+        yline(.5,'--')
+        title("Overall Performance")
+        subplot(1,3,2);hold on 
+        xlim([0 vr.livePlot_opt.initRasterMaxTrials]) 
+        ylim([0 1])
+        yline(.5,'--')
+        title("L/R Performance")
+        subplot(1,3,3);hold on 
+        xlim([0 vr.livePlot_opt.initRasterMaxTrials]) 
+        ylim([0 1])
+        yline(.5,'--')
+        title("Checker/NoChecker Performance")
+        figure(vr.livePlotFig)
     end
 end
 

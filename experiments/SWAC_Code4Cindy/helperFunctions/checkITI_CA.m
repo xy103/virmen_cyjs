@@ -23,7 +23,10 @@ if vr.inITI == 1
         % change to noChecker maze probabilistically
         rand_checker = rand;
         if rand_checker > vr.fractionNoChecker % give checker trial
+            vr.Checker_trial = [vr.Checker_trial 1];
             vr.blockWorlds = vr.blockWorlds + 4;
+        else 
+            vr.Checker_trial = [vr.Checker_trial 0];
         end
 
         vr = chooseNextWorld_CA(vr);
