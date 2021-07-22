@@ -163,7 +163,7 @@ switch rigName
         
         % reward calibration through init_variables.h
         ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.06;
+        ops.rewardPulseDuration = 0.045;
         
         % base data directory settings
         ops.dataDirectory = 'D:\DATA\Cindy'; 
