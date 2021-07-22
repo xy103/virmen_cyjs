@@ -63,8 +63,6 @@ function vr = fading_runningTraj_livePlot(vr)
         new_cmap = [];
         for i_world = 1:vr.nWorlds
             % this weird stuff is due to how cbrewer works
-            disp(vr.livePlot_opt.color_gradient_order(i_world)) % this doesn't actually work for switching task
-            disp(max(3,n_trials_world(i_world)))
             i_world_colors = flipud(cbrewer('seq',vr.livePlot_opt.color_gradient_order(i_world),max(3,n_trials_world(i_world)),'spline'));
             i_world_colors = i_world_colors(end-n_trials_world(i_world)+1:end,:);
             new_cmap = [new_cmap ; i_world_colors];

@@ -31,7 +31,7 @@ function vr = initLivePlots(vr)
         grey = greys(8,:);
         brown = ylOrBr(8,:); 
         vr.livePlot_opt.worldColors = [blue ; blue ; red ; red ; grey ; grey ; brown ; brown]; % trial type colors for lick raster 
-        vr.livePlot_opt.worldSymbols = 'oxoxoxoxoxoxoxox'; % trial type symbols for lick raster 
+        vr.livePlot_opt.worldSymbols = '.x.x.x.x.x.x.x.x'; % trial type symbols for lick raster 
     end
     vr.livePlot_opt.initRasterMaxTrials = 50; 
     vr.livePlot_opt.n_save_trials = 10;
@@ -46,7 +46,7 @@ function vr = initLivePlots(vr)
         vr.live_saved_xy = cell(vr.nWorlds,1); 
     end
     
-    figure(vr.livePlotFig)
+    figure(vr.livePlotFig);
     % initialize plots
     subplot(2,2,1);hold on
     xlabel("Time (seconds)")
@@ -59,8 +59,8 @@ function vr = initLivePlots(vr)
     set(gca, 'YDir','reverse')
     subplot(8,8,[36 44 52 60]);hold on
     xlabel("Time in ITI (sec)") 
-    ylabel("Trial #")
     ylim([0,vr.livePlot_opt.initRasterMaxTrials]) 
+    yticks([])
     if strcmp(vr.exper_name,'dynSwitching_CYJS')
         xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMissBase)]) 
     elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
@@ -71,14 +71,14 @@ function vr = initLivePlots(vr)
     % Running trajectory plot
     if strcmp(vr.exper_name,'dynSwitching_CYJS')
         subplot(2,2,2); hold on % non-visually guided
-        ylim([0 vr.rewardLength])
+        ylim([0 vr.rewardLength + 20])
         xlim([-vr.funnelWidth/2 vr.funnelWidth/2])
         xlabel("X Position (cm)")
         ylabel("Y Position (cm)")
         draw_Ymaze(vr)
         
         subplot(2,2,4); hold on % visually-guided 
-        ylim([0 vr.rewardLength])
+        ylim([0 vr.rewardLength + 20])
         xlim([-vr.funnelWidth/2 vr.funnelWidth/2])
         xlabel("X Position (cm)")
         ylabel("Y Position (cm)")

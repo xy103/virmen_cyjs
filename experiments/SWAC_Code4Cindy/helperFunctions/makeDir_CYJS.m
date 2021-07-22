@@ -11,7 +11,8 @@ else
     vr.basePath = 'D:\DATA\Cindy'; % directory for VR behavior data
 
 end
-vr.date = date;
+formatOut = 'yymmdd';
+vr.date = datestr(now,formatOut);
 vr.fullPath = [vr.basePath filesep num2str(vr.mouseNum) filesep vr.date];
 
 if ~exist(vr.fullPath,'dir')
@@ -34,8 +35,6 @@ else
     subFolder = strcat('session_',num2str(session_ID+1)); % create a new subFolder with an incremented session_ID
     vr.fullPath = [vr.fullPath filesep subFolder];
     mkdir(vr.fullPath);
-%     vr.fullPathCamera = strcat(vr.fullPath, '\PupilDATA');
-%     mkdir(vr.fullPathCamera);
 end
 
 cd(currentdir)
