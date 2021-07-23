@@ -39,8 +39,8 @@ function vr = updateLivePlots(vr)
     
     % Lick trace from last trial
     subplot(2,2,1);cla
-    plot(t,lick_trace,'color',[.2,.8,.2],'linewidth',1) % lick signal
-    scatter(lick_t,lick_v,10,[0,0,0]) % estimated lick event signals
+    plot(t,lick_trace,'color',[.2,.8,.2],'linewidth',1); % lick signal
+    scatter(lick_t,lick_v,10,[0,0,0]); % estimated lick event signals
     % add patches to indicate trial interval
     try
         v_ISI = [0 -1; 0 0; rew_delay_start 0; rew_delay_start -1];
@@ -59,11 +59,11 @@ function vr = updateLivePlots(vr)
 
     % Lick raster colored by trial type
     subplot(8,8,[33:35 41:43 49:51 57:59]); cla;hold on
-    custom_gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3)
+    custom_gscatter(vr.trial_world_lickY(:,3),vr.trial_world_lickY(:,1),vr.trial_world_lickY(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3);
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     subplot(8,8,[36 44 52 60]); cla
-    custom_gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3)
+    custom_gscatter(vr.trial_world_ITIlickT(:,3),vr.trial_world_ITIlickT(:,1),vr.trial_world_ITIlickT(:,2),vr.livePlot_opt.worldColors,vr.livePlot_opt.worldSymbols,3);
     set(gca, 'YDir','reverse')
     ylim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
     
@@ -74,31 +74,31 @@ function vr = updateLivePlots(vr)
         figure(vr.performanceFig);
         subplot(1,3,1)
         cla; hold on;
-        plot(smoothdata(vr.Rewards,'gaussian',15),'k','linewidth',1.5)
+        plot(smoothdata(vr.Rewards,'gaussian',15),'k','linewidth',1.5);
         subplot(1,3,2)
         cla; hold on;
         rewards_L = vr.Rewards; 
         rewards_L(vr.pastCorrect == "R") = nan; 
         rewards_R = vr.Rewards; 
         rewards_R(vr.pastCorrect == "L") = nan; 
-        plot(smoothdata(rewards_L,'gaussian',15),'b','linewidth',1)
-        plot(smoothdata(rewards_R,'gaussian',15),'r','linewidth',1)
-        legend("L World","R World",'AutoUpdate','off')
+        plot(smoothdata(rewards_L,'gaussian',15),'b','linewidth',1);
+        plot(smoothdata(rewards_R,'gaussian',15),'r','linewidth',1);
+        legend("L World","R World",'AutoUpdate','off');
         subplot(1,3,3)
         cla; hold on;
         rewards_checker = vr.Rewards; 
         rewards_checker(vr.Checker_trial == 0) = nan; 
         rewards_noChecker = vr.Rewards; 
         rewards_noChecker(vr.Checker_trial == 1) = nan;
-        plot(smoothdata(rewards_checker,'gaussian',15),'k:','linewidth',1)
-        plot(smoothdata(rewards_noChecker,'gaussian',15),'k-','linewidth',1)
-        legend("Checker","NoChecker",'AutoUpdate','off')
+        plot(smoothdata(rewards_checker,'gaussian',15),'k:','linewidth',1);
+        plot(smoothdata(rewards_noChecker,'gaussian',15),'k-','linewidth',1);
+        legend("Checker","NoChecker",'AutoUpdate','off');
         
         for i_subplot = 1:3
             subplot(1,3,i_subplot)
             xlim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
             ylim([0 1])
-            yline(.5,'--')
+            yline(.5,'--');
             if ~isempty(vr.switches)
                 xline(vr.switches); 
             end
