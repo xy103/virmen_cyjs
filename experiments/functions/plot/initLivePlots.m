@@ -49,68 +49,68 @@ function vr = initLivePlots(vr)
     figure(vr.livePlotFig);
     % initialize plots
     subplot(2,2,1);hold on
-    xlabel("Time (seconds)")
-    ylabel("Lick Signal (V)")
+    xlabel("Time (seconds)");
+    ylabel("Lick Signal (V)");
 
     subplot(8,8,[33:35 41:43 49:51 57:59]);hold on 
-    xlabel("Position (cm)") 
-    ylabel("Trial #")
-    ylim([0,vr.livePlot_opt.initRasterMaxTrials])
-    set(gca, 'YDir','reverse')
+    xlabel("Position (cm)");
+    ylabel("Trial #");
+    ylim([0,vr.livePlot_opt.initRasterMaxTrials]);
+    set(gca, 'YDir','reverse');
     subplot(8,8,[36 44 52 60]);hold on
-    xlabel("Time in ITI (sec)") 
-    ylim([0,vr.livePlot_opt.initRasterMaxTrials]) 
-    yticks([])
+    xlabel("Time in ITI (sec)"); 
+    ylim([0,vr.livePlot_opt.initRasterMaxTrials]); 
+    yticks([]);
     if strcmp(vr.exper_name,'dynSwitching_CYJS')
-        xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMissBase)]) 
+        xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMissBase)]); 
     elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
-        xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMiss)]) 
+        xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMiss)]); 
     end
-    set(gca, 'YDir','reverse')
+    set(gca, 'YDir','reverse');
     
     % Running trajectory plot
     if strcmp(vr.exper_name,'dynSwitching_CYJS')
         subplot(2,2,2); hold on % non-visually guided
-        ylim([0 vr.rewardLength + 20])
-        xlim([-vr.funnelWidth/2 vr.funnelWidth/2])
-        xlabel("X Position (cm)")
-        ylabel("Y Position (cm)")
-        draw_Ymaze(vr)
+        ylim([0 vr.rewardLength + 20]);
+        xlim([-vr.funnelWidth/2 vr.funnelWidth/2]);
+        xlabel("X Position (cm)");
+        ylabel("Y Position (cm)");
+        draw_Ymaze(vr);
         
         subplot(2,2,4); hold on % visually-guided 
-        ylim([0 vr.rewardLength + 20])
-        xlim([-vr.funnelWidth/2 vr.funnelWidth/2])
-        xlabel("X Position (cm)")
-        ylabel("Y Position (cm)")
-        draw_Ymaze(vr)
+        ylim([0 vr.rewardLength + 20]);
+        xlim([-vr.funnelWidth/2 vr.funnelWidth/2]);
+        xlabel("X Position (cm)");
+        ylabel("Y Position (cm)");
+        draw_Ymaze(vr);
         
     elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
         subplot(2,2,[2 4]); hold on
-        ylim([0 vr.floorLength])
-        xlim([-vr.floorWidth/2 vr.floorWidth/2])
-        xlabel("X Position (cm)")
-        ylabel("Y Position (cm)")
+        ylim([0 vr.floorLength]);
+        xlim([-vr.floorWidth/2 vr.floorWidth/2]);
+        xlabel("X Position (cm)");
+        ylabel("Y Position (cm)");
     end
     
     % set up performance plot figure
     if strcmp(vr.exper_name,'dynSwitching_CYJS')
-        figure(vr.performanceFig)
+        figure(vr.performanceFig);
         subplot(1,3,1);hold on 
-        xlim([0 vr.livePlot_opt.initRasterMaxTrials]) 
-        ylim([0 1])
-        yline(.5,'--')
+        xlim([0 vr.livePlot_opt.initRasterMaxTrials]);
+        ylim([0 1]);
+        yline(.5,'--');
         title("Overall Performance")
         subplot(1,3,2);hold on 
-        xlim([0 vr.livePlot_opt.initRasterMaxTrials]) 
-        ylim([0 1])
-        yline(.5,'--')
-        title("L/R Performance")
+        xlim([0 vr.livePlot_opt.initRasterMaxTrials]); 
+        ylim([0 1]);
+        yline(.5,'--');
+        title("L/R Performance");
         subplot(1,3,3);hold on 
-        xlim([0 vr.livePlot_opt.initRasterMaxTrials]) 
-        ylim([0 1])
-        yline(.5,'--')
-        title("Checker/NoChecker Performance")
-        figure(vr.livePlotFig)
+        xlim([0 vr.livePlot_opt.initRasterMaxTrials]); 
+        ylim([0 1]);
+        yline(.5,'--');
+        title("Checker/NoChecker Performance");
+        figure(vr.livePlotFig);
     end
 end
 

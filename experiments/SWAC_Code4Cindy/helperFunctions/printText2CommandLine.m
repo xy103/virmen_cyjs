@@ -1,6 +1,6 @@
 function vr = printText2CommandLine(vr)
 if vr.numTrials > 0
-    fprintf('\n Time elapsed: %s \t',datestr(now-vr.timeStarted, 'MM:SS')); % print the time elapsed 
+    fprintf('\n Time elapsed: %s \t',datestr(now-vr.timeStarted, 'HH:MM:SS')); % print the time elapsed 
 else
     fprintf('\n Start time: %s \t',datestr(now, 'HH:MM:SS'))
 end
