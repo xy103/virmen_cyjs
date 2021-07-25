@@ -137,14 +137,14 @@ switch rigName
         ops.dev = 'dev1';
         
         % ball sensor offset
-        ops.ballSensorOffset = [1.6448    1.6492    1.6496]; % calibrated 7/9/21
+        ops.ballSensorOffset = [1.6357    1.6595    1.6843]; % calibrated 7/25/21
         ops.forwardGain = -185; % calibrated 7/12/21 for 40 PSI
         ops.sideGain = 100; 
         ops.viewAngleGain = 3.44;
         
         % reward calibration through init_variables.h
         ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.045; % calibrated 7/21
+        ops.rewardPulseDuration = 0.04; % calibrated 7/25
         
         % base data directory settings
         ops.dataDirectory = 'D:\DATA\Cindy'; 
