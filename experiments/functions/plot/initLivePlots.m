@@ -7,7 +7,7 @@ function vr = initLivePlots(vr)
     vr.livePlotFig = figure('color','white',...
     'position',[screenSize(3) - fig_width,screenSize(4) - fig_height - 80,fig_width,fig_height]);
     
-    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+    if contains(vr.exper_name,'dynSwitching_CYJS')
         performance_fig_width = 700;         
         performance_fig_height = 250; 
         vr.performanceFig = figure('color','white',...
@@ -18,10 +18,10 @@ function vr = initLivePlots(vr)
     vr.livePlot_opt = struct; 
     vr.livePlot_opt.minLickV = 1; % min value for lick detection
     vr.livePlot_opt.lickV = 0.5; % voltage for lick detection
-    if strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    if contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
         vr.livePlot_opt.worldColors = lines(vr.nWorlds); % trial type colors for lick raster 
         vr.livePlot_opt.worldSymbols = '..'; % trial type symbols for lick raster 
-    elseif strcmp(vr.exper_name,'dynSwitching_CYJS')
+    elseif contains(vr.exper_name,'dynSwitching_CYJS')
         ylOrBr = cbrewer('seq','YlOrBr',10,'spline'); 
         greys = cbrewer('seq','Greys',10,'spline'); 
         blues = cbrewer('seq','Blues',10,'spline');
@@ -40,9 +40,9 @@ function vr = initLivePlots(vr)
     % initialize data for plots 
     vr.trial_world_lickY = []; 
     vr.trial_world_ITIlickT = []; 
-    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+    if contains(vr.exper_name,'dynSwitching_CYJS')
         vr.live_saved_xy = cell(4,1);
-    elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
         vr.live_saved_xy = cell(vr.nWorlds,1); 
     end
     
@@ -61,15 +61,15 @@ function vr = initLivePlots(vr)
     xlabel("Time in ITI (sec)"); 
     ylim([0,vr.livePlot_opt.initRasterMaxTrials]); 
     yticks([]);
-    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+    if contains(vr.exper_name,'dynSwitching_CYJS')
         xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMissBase)]); 
-    elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
         xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMiss)]); 
     end
     set(gca, 'YDir','reverse');
     
     % Running trajectory plot
-    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+    if contains(vr.exper_name,'dynSwitching_CYJS')
         subplot(2,2,2); hold on % non-visually guided
         ylim([0 vr.rewardLength + 20]);
         xlim([-vr.funnelWidth/2 vr.funnelWidth/2]);
@@ -84,7 +84,7 @@ function vr = initLivePlots(vr)
         ylabel("Y Position (cm)");
         draw_Ymaze(vr);
         
-    elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
         subplot(2,2,[2 4]); hold on
         ylim([0 vr.floorLength]);
         xlim([-vr.floorWidth/2 vr.floorWidth/2]);
@@ -93,7 +93,7 @@ function vr = initLivePlots(vr)
     end
     
     % set up performance plot figure
-    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+    if contains(vr.exper_name,'dynSwitching_CYJS')
         figure(vr.performanceFig);
         subplot(1,3,1);hold on 
         xlim([0 vr.livePlot_opt.initRasterMaxTrials]);
