@@ -73,8 +73,7 @@ function vr = init_switching_task(vr)
 
     % Gain (JS from initTMaze)
     vr.yawGain = 1;
-    % vr.pitchGain = 20 ; %  1; % CY 07/26/2021 note: this value was 20
-    % instead of 1, but seems to be unused by movement func
+    vr.pitchGain = 1; % 07/16/2021 CY found out this was set to 20
     vr.targetRevealed = false; 
     
     % initialize a bunch of counters

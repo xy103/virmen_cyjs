@@ -1,7 +1,7 @@
 function velocity = moveWithTwoSensors_fixedHD_js(vr)
     global daqData
     global mvData
-    velocity = [0 0 0 0]; % x y z hd
+    velocity = [0 0 0 0];
 
     if isempty(daqData)
         return
@@ -20,14 +20,14 @@ function velocity = moveWithTwoSensors_fixedHD_js(vr)
     % 3: yaw
 
     % Update velocity
-    % alpha = vr.ops.forwardGain * vr.pitchGain;
-    flip = 1; % set to 1 if the mirror flips right and left in Virmen
+    alpha = vr.ops.forwardGain * vr.pitchGain;
+    flip = 1; % set to 1 if the mirror flips right and left in Virme9n
 
     if flip == true
-        velocity(1) = -data(2) * vr.ops.sideGain; % x
+        velocity(1) = -data(2) * vr.ops.sideGain;
     else
         velocity(1) = data(2) * vr.ops.sideGain;
     end
-    velocity(2) = data(1) * vr.ops.forwardGain; % y
+    velocity(2) = data(1) * vr.ops.forwardGain;
     velocity(4) = 0; % fix head direction
 end
