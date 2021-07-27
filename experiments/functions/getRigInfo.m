@@ -21,115 +21,115 @@ end
 
 %
 switch rigName      
-    case 'Optorig' % Photostimulation Rig
-        ops.rigName = rigName;
-        
-        % daq settings
-        ops.dev = 'Dev2';
-        ops.photoInhibTrig = 'Port0/Line1';
-        ops.comPortTeensy = 'COM12';
-        
-        % ball sensor offset
-        ops.ballSensorOffset = [ 1.6399 1.642 1.645 ];
-        ops.forwardGain = -410;
-        ops.viewAngleGain = 3.5;
-        
-        % reward calibration through init_variables.h
-        ops.useTeensyReward = true;
-        
-        % base data directory settings
-        ops.dataDirectory = 'C:\DATA\Carissa';
-        
-    case 'Behavior_rig1'
-        ops.rigName = rigName;
-        
-        % daq settings
-        ops.dev = 'dev1';
-        
-        % ball sensor offset
-        ops.ballSensorOffset = [1.6505, 1.652, 1.655];
-        ops.forwardGain = -126;
-        ops.viewAngleGain = 3.95;
-        
-        % reward calibration through init_variables.h
-        ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.055*1;
-        
-        % base data directory settings
-        ops.dataDirectory = 'D:\DATA\Jonathan';
-        
-    case 'Behavior_rig2'
-        ops.rigName = rigName;
-        
-        % daq settings
-        ops.dev = 'dev1';
-        
-        % ball sensor offset
-        ops.ballSensorOffset = [1.6449, 1.652, 1.65];
-        ops.forwardGain = -151;
-        ops.viewAngleGain = 4.47;
-        
-        % reward calibration through init_variables.h
-        ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.055*2;
-        
-        % base data directory settings
-        ops.dataDirectory = 'D:\DATA\Jonathan';
-        
-    case 'Rotation_scope'
-        ops.rigName = rigName;
-        
-        % daq settings
-        ops.dev = 'dev1';
-        
-        % ball sensor offset
-        ops.ballSensorOffset = [1.4942, 1.4965, 1.5]; % old ball: [1.4946, 1.4965, 1.5];
-        ops.forwardGain = -128; % old ball: -142
-        ops.viewAngleGain = 4.18;
-        
-        
-        % reward calibration through init_variables.h
-        ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.07*1;
-        
-        % base data directory settings
-        ops.dataDirectory = 'D:\DATA\Jonathan';        
-
-    case 'Loki'
-        ops.rigName = rigName;
-        
-        % daq settings
-        ops.dev = 'Dev1';
-        
-        % ball sensor offset
-        ops.ballSensorOffset = [1.5071, 1.52, 1.511];
-        ops.forwardGain = -139;
-        ops.viewAngleGain = 4.08;
-        
-        % reward calibration through init_variables.h
-        ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.030;
-        
-        % base data directory settings
-        ops.dataDirectory = 'D:\DATA\Destinee';
-    case 'Anna_2PStim'
-        ops.rigName = rigName;
-        
-        % daq settings
-        ops.dev = 'dev1';
-        
-        % ball sensor offset
-        ops.ballSensorOffset = [1.6477, 1.65, 1.654];
-        ops.forwardGain = -110;
-        ops.viewAngleGain = 3.44;
-        
-        % reward calibration through init_variables.h
-        ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.07;
-        
-        % base data directory settings
-        ops.dataDirectory = 'D:\DATA\Jonathan'; 
-        
+%     case 'Optorig' % Photostimulation Rig
+%         ops.rigName = rigName;
+%         
+%         % daq settings
+%         ops.dev = 'Dev2';
+%         ops.photoInhibTrig = 'Port0/Line1';
+%         ops.comPortTeensy = 'COM12';
+%         
+%         % ball sensor offset
+%         ops.ballSensorOffset = [ 1.6399 1.642 1.645 ];
+%         ops.forwardGain = -410;
+%         ops.viewAngleGain = 3.5;
+%         
+%         % reward calibration through init_variables.h
+%         ops.useTeensyReward = true;
+%         
+%         % base data directory settings
+%         ops.dataDirectory = 'C:\DATA\Carissa';
+%         
+%     case 'Behavior_rig1'
+%         ops.rigName = rigName;
+%         
+%         % daq settings
+%         ops.dev = 'dev1';
+%         
+%         % ball sensor offset
+%         ops.ballSensorOffset = [1.6505, 1.652, 1.655];
+%         ops.forwardGain = -126;
+%         ops.viewAngleGain = 3.95;
+%         
+%         % reward calibration through init_variables.h
+%         ops.useTeensyReward = false;
+%         ops.rewardPulseDuration = 0.055*1;
+%         
+%         % base data directory settings
+%         ops.dataDirectory = 'D:\DATA\Jonathan';
+%         
+%     case 'Behavior_rig2'
+%         ops.rigName = rigName;
+%         
+%         % daq settings
+%         ops.dev = 'dev1';
+%         
+%         % ball sensor offset
+%         ops.ballSensorOffset = [1.6449, 1.652, 1.65];
+%         ops.forwardGain = -151;
+%         ops.viewAngleGain = 4.47;
+%         
+%         % reward calibration through init_variables.h
+%         ops.useTeensyReward = false;
+%         ops.rewardPulseDuration = 0.055*2;
+%         
+%         % base data directory settings
+%         ops.dataDirectory = 'D:\DATA\Jonathan';
+%         
+%     case 'Rotation_scope'
+%         ops.rigName = rigName;
+%         
+%         % daq settings
+%         ops.dev = 'dev1';
+%         
+%         % ball sensor offset
+%         ops.ballSensorOffset = [1.4942, 1.4965, 1.5]; % old ball: [1.4946, 1.4965, 1.5];
+%         ops.forwardGain = -128; % old ball: -142
+%         ops.viewAngleGain = 4.18;
+%         
+%         
+%         % reward calibration through init_variables.h
+%         ops.useTeensyReward = false;
+%         ops.rewardPulseDuration = 0.07*1;
+%         
+%         % base data directory settings
+%         ops.dataDirectory = 'D:\DATA\Jonathan';        
+% 
+%     case 'Loki'
+%         ops.rigName = rigName;
+%         
+%         % daq settings
+%         ops.dev = 'Dev1';
+%         
+%         % ball sensor offset
+%         ops.ballSensorOffset = [1.5071, 1.52, 1.511];
+%         ops.forwardGain = -139;
+%         ops.viewAngleGain = 4.08;
+%         
+%         % reward calibration through init_variables.h
+%         ops.useTeensyReward = false;
+%         ops.rewardPulseDuration = 0.030;
+%         
+%         % base data directory settings
+%         ops.dataDirectory = 'D:\DATA\Destinee';
+%     case 'Anna_2PStim'
+%         ops.rigName = rigName;
+%         
+%         % daq settings
+%         ops.dev = 'dev1';
+%         
+%         % ball sensor offset
+%         ops.ballSensorOffset = [1.6477, 1.65, 1.654];
+%         ops.forwardGain = -110;
+%         ops.viewAngleGain = 3.44;
+%         
+%         % reward calibration through init_variables.h
+%         ops.useTeensyReward = false;
+%         ops.rewardPulseDuration = 0.07;
+%         
+%         % base data directory settings
+%         ops.dataDirectory = 'D:\DATA\Jonathan'; 
+%         
     case 'CYJS_BehaviorRig'
         ops.rigName = rigName;
         
@@ -137,14 +137,14 @@ switch rigName
         ops.dev = 'dev1';
         
         % ball sensor offset
-        ops.ballSensorOffset = [1.6357    1.6595    1.6843]; % calibrated 7/25/21
-        ops.forwardGain = -185; % calibrated 7/12/21 for 40 PSI
+        ops.ballSensorOffset = [1.6447    1.6490    1.6496]; % calibrated 7/27/21
+        ops.forwardGain = -170; % new cali 170 07/27; -185 calibrated 7/12/21 for 40 PSI
         ops.sideGain = 100; 
         ops.viewAngleGain = 3.44;
         
         % reward calibration through init_variables.h
         ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.04; % calibrated 7/25
+        ops.rewardPulseDuration = 0.045; % calibrated 7/27
         
         % base data directory settings
         ops.dataDirectory = 'D:\DATA\Cindy'; 
@@ -156,14 +156,14 @@ switch rigName
         ops.dev = 'dev1';
         
         % ball sensor offset
-        ops.ballSensorOffset = [1.6511    1.6559    1.6562];% calibrated 7/25/21
-        ops.forwardGain = -175;
+        ops.ballSensorOffset = [1.6513    1.6557    1.6561];% calibrated 7/27/21
+        ops.forwardGain = -160; %new cali 160 07/27, was 175 at 40 psi
         ops.sideGain = 100; 
         ops.viewAngleGain = 3.44;
         
         % reward calibration through init_variables.h
         ops.useTeensyReward = false;
-        ops.rewardPulseDuration = 0.045;
+        ops.rewardPulseDuration = 0.05; %0727
         
         % base data directory settings
         ops.dataDirectory = 'D:\DATA\Cindy'; 

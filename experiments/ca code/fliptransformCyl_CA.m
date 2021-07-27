@@ -4,6 +4,10 @@ function coords2D = fliptransformCyl_CA(coords3D)
 % alpha = 2.0349;
 % beta = -0.98988;
 
+% CY 0727 debug, when changing initial loc y = 5, somehoe coords3D first
+% val fixed at -5 and no forward movement dispite mov function working fine
+% come back to fix this later
+
 % create an output matrix of the same size as the input
 % first two rows are x and y
 % the third row indicates whether the location should be visible
