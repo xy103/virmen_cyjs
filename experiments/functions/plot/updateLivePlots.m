@@ -3,7 +3,7 @@ function vr = updateLivePlots(vr)
     behavData = vr.behaviorData(:,1:vr.trialIterations);
     figure(vr.livePlotFig);
     rew_delay_start_ix = find(behavData(8,:) == -1,1); 
-    x = behavData(5,1:rew_delay_start_ix);
+    x = - behavData(5,1:rew_delay_start_ix);
     y = behavData(6,1:rew_delay_start_ix);
     t = cumsum(behavData(10,:));
     rew_delay_start = t(rew_delay_start_ix);
@@ -85,7 +85,7 @@ function vr = updateLivePlots(vr)
         plot(smoothdata(rewards_R,'gaussian',15),'r','linewidth',1);
         legend("L World","R World",'AutoUpdate','off');
         subplot(1,3,3)
-        cla; hold on;
+        cla; hold on;  
         rewards_checker = vr.Rewards; 
         rewards_checker(vr.Checker_trial == 0) = nan; 
         rewards_noChecker = vr.Rewards; 
@@ -99,8 +99,8 @@ function vr = updateLivePlots(vr)
             xlim([0 max(vr.livePlot_opt.initRasterMaxTrials,vr.numTrials)])
             ylim([0 1])
             yline(.5,'--');
-            if ~isempty(vr.switches)
-                xline(vr.switches); 
+            if ~isempty(vr.Switches)
+                xline(vr.Switches); 
             end
         end
         figure(vr.livePlotFig);
