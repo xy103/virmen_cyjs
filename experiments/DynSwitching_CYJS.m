@@ -32,6 +32,8 @@ end
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)    
+    vr = outputVirmenTrigger(vr); %08/20/21 CY added to aid sync b/w virmen and ephys
+
     % collect behavior data
     vr = collectBehaviorIter_full(vr);
 

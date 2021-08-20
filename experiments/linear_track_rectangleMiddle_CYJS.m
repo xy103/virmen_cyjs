@@ -47,13 +47,16 @@ vr.currentWorld = randi(vr.nWorlds); % randomly choose one of the available worl
 
 vr = initLivePlots(vr); 
 
+
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)
+vr = outputVirmenTrigger(vr); %08/20/21 CY added to aid sync b/w virmen and ephys
 vr = collectBehaviorIter_TMazeCYJS(vr); % collect behavior data
 vr = adjustFriction(vr); % Decrease velocity by friction coefficient (can be zero)
 vr = checkForManualReward(vr); % Deliver reward if 'r' key pressed
 vr = checkforTrialEndPosition_linearTrackRectangleMiddle(vr); % Check for end position, paying attn to lateral
 vr = waitForNextTrial_linTrack(vr); % wait for next trial
+vr = printText2CommandLine_linearTrack(vr)
 
 % --- TERMINATION code: executes after the ViRMEn engine stops.
 function vr = terminationCodeFun(vr)
