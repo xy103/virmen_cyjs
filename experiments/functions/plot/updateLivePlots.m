@@ -100,7 +100,9 @@ function vr = updateLivePlots(vr)
             ylim([0 1])
             yline(.5,'--');
             if ~isempty(vr.Switches)
-                xline(vr.Switches,'g'); 
+                for this_sw = 1:length(vr.Switches)
+                    xline(vr.Switches(this_sw),'g');
+                end
             end
         end
         figure(vr.livePlotFig);
