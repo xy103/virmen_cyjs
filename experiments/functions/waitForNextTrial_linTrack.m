@@ -21,6 +21,8 @@ function vr = waitForNextTrial_linTrack(vr)
             vr.inRewardZone = 0;
             vr.trialTimer = tic;
             vr.trialStartTime = rem(now,1);
+            
+            vr = printText2CommandLine_linearTrack(vr);
         end
     end
 end

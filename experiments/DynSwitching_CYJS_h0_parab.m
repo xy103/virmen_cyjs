@@ -1,7 +1,7 @@
 %% A reboot of the switching task by Cindy Yuan and Josh Stern
 % Based on DynSwitching_4Conds_Rig2 by Charlotte Arlte
 
-function code = DynSwitching_CYJS
+function code = DynSwitching_CYJS_h0_parab
 % Linear Track   Code for the ViRMEn experiment Linear Track.
 %   code = Linear Track   Returns handles to the functions that ViRMEn
 %   executes during engine initialization, runtime and termination.
@@ -32,8 +32,6 @@ end
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)    
-    vr = outputVirmenTrigger(vr); %08/20/21 CY added to aid sync b/w virmen and ephys
-
     % collect behavior data
     vr = collectBehaviorIter_full(vr);
 
