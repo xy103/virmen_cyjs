@@ -18,10 +18,10 @@
         if ~vr.hasFeedback && (vr.rewDelayTime > vr.feedbackDelay)
             vr.hasFeedback = 1;
             vr.position(2) = vr.rewardLength + 1e-3; % unhide the checkers
-            vr.behaviorData(8,vr.trialIterations) = -2;
+            vr.behaviorData(8,vr.trialIterations) = -2; % checker unhided
             vr.behaviorData(9,vr.trialIterations) = 0;
             
-        elseif vr.rewDelayTime > vr.rewardDelay 
+        elseif vr.rewDelayTime > vr.rewardDelay % unrewarded trials
             % keep track of choices in past to identify bias and add more
             % worlds with opposite choice to make
             if vr.position(1) > 0
@@ -59,7 +59,7 @@
 
             % start the ITI
             vr = startITI_CA_Rig2(vr); 
-        else
+        else % rewarded trial, feedback already on
             vr.behaviorData(9,vr.trialIterations) = 0;
             vr.behaviorData(8,vr.trialIterations) = -1;
         end
