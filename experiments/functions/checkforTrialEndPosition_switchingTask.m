@@ -59,7 +59,7 @@
 
             % start the ITI
             vr = startITI_CA_Rig2(vr); 
-        else % rewarded trial, feedback already on
+        else % reward delay (prior to delivery)
             vr.behaviorData(9,vr.trialIterations) = 0;
             vr.behaviorData(8,vr.trialIterations) = -1;
         end

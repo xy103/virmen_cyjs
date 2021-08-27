@@ -23,13 +23,13 @@ function vr = updateLivePlots(vr)
        vr.numRewards_consumed = vr.numRewards_consumed + 1;  
     end
     
-    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+    if contains(vr.exper_name,'dynSwitching_CYJS')
         this_tt = 1 + (1 - vr.Rewards(end)) + 2 * strcmp(vr.pastCorrect(end),"R") + 4 * vr.Checker_trial(end); % separate by correct, choice, and checker
         vr.trial_world_lickY = [vr.trial_world_lickY ; ...
             ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + this_tt lick_y'];
         vr.trial_world_ITIlickT = [vr.trial_world_ITIlickT ; ...
             ones(n_licks_ITI,1) + vr.numTrials zeros(n_licks_ITI,1) + this_tt lick_t_ITI'];
-    elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
         vr.trial_world_lickY = [vr.trial_world_lickY ; ...
             ones(n_licks,1) + vr.numTrials zeros(n_licks,1) + vr.currentWorld lick_y'];
         vr.trial_world_ITIlickT = [vr.trial_world_ITIlickT ; ...
@@ -83,7 +83,7 @@ function vr = updateLivePlots(vr)
         rewards_R(vr.pastCorrect == "L") = nan; 
         plot(smoothdata(rewards_L,'gaussian',15),'b','linewidth',1);
         plot(smoothdata(rewards_R,'gaussian',15),'r','linewidth',1);
-        legend("L World","R World",'AutoUpdate','off');
+        legend("L World","R World",'AutoUpdate','off','Location','best');
         subplot(1,3,3)
         cla; hold on;  
         rewards_checker = vr.Rewards; 
@@ -92,7 +92,7 @@ function vr = updateLivePlots(vr)
         rewards_noChecker(vr.Checker_trial == 1) = nan;
         plot(smoothdata(rewards_checker,'gaussian',15),'k:','linewidth',1);
         plot(smoothdata(rewards_noChecker,'gaussian',15),'k-','linewidth',1);
-        legend("Checker","NoChecker",'AutoUpdate','off');
+        legend("C","NoC",'AutoUpdate','off','Location','best');
         
         for i_subplot = 1:3
             subplot(1,3,i_subplot)

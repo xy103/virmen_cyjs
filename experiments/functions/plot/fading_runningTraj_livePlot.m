@@ -6,7 +6,7 @@ function vr = fading_runningTraj_livePlot(vr)
     y = behavData(6,1:rew_delay_start_ix);
     this_world = vr.currentWorld;
 
-    if strcmp(vr.exper_name,'dynSwitching_CYJS')
+    if contains(vr.exper_name,'dynSwitching_CYJS')
         % update live_saved_xy
         if ~isempty(vr.switches) 
            if vr.switches(end) == vr.numTrials 
@@ -46,10 +46,15 @@ function vr = fading_runningTraj_livePlot(vr)
             for i_grp = ((1:2)+plot_counter)
                 arrayfun(@(i_trial) plot(vr.live_saved_xy{i_grp}{i_trial}(:,1),vr.live_saved_xy{i_grp}{i_trial}(:,2)),(1:n_trials_grp(i_grp)));
             end
+            if plot_counter == 0
+                title('noC trials')
+            else
+                title('Checker trials')
+            end
         end
 
         
-    elseif strcmp(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
         % update live_saved_xy
         if numel(vr.live_saved_xy{this_world}) < vr.livePlot_opt.n_save_trials % append if fewer than save trials
             vr.live_saved_xy{this_world} = [vr.live_saved_xy{this_world} ; {[x' y']}];
