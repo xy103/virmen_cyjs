@@ -56,7 +56,6 @@ vr = adjustFriction(vr); % Decrease velocity by friction coefficient (can be zer
 vr = checkForManualReward(vr); % Deliver reward if 'r' key pressed
 vr = checkforTrialEndPosition_linearTrackRectangleMiddle(vr); % Check for end position, paying attn to lateral
 vr = waitForNextTrial_linTrack(vr); % wait for next trial
-vr = printText2CommandLine_linearTrack(vr);
 
 % --- TERMINATION code: executes after the ViRMEn engine stops.
 function vr = terminationCodeFun(vr)
