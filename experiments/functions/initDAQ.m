@@ -9,7 +9,7 @@ if ~vr.debugMode
     h2.TerminalConfig = 'SingleEnded';
     h3 = vr.ai.addAnalogInputChannel(vr.ops.dev,'ai2','Voltage');
     h3.TerminalConfig = 'SingleEnded';
-    h4 = vr.ai.addAnalogInputChannel(vr.ops.dev,'ai3','Voltage'); % this is lick sensor
+    h4 = vr.ai.addAnalogInputChannel(vr.ops.dev,'ai6','Voltage'); % this is lick sensor
     h4.TerminalConfig = 'SingleEnded';
     
     vr.ai.Rate = 1e3;

@@ -1,7 +1,7 @@
 function vr = collectBehaviorIter_full(vr)
 
 global daqData;
-lickInfo = daqData(4);
+lickInfo = round(daqData(4));
 
 thisIter(1) = vr.currentWorld;
 thisIter(2:4) = vr.velocity([1,2,4]); % row 4 will be empty with fixed view angle movement function
