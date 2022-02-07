@@ -11,9 +11,11 @@ if vr.numTrials>1
             trialData(nTrial) = 1;
         end
     end
-
     fprintf('\n Concatenated Data for %03.0f Trials \n',sum(trialData)),
     sessionDataName = fullfile(vr.fullPath,'sessionData');
-    experData = vr.exper;
-    save(sessionDataName,'sessionData','experData'),
+    experData = struct(vr.exper);
+    save(sessionDataName,'sessionData','experData')
+    % Make summary visualization
+    switching_summary_visualization(sessionData,experData.variables)
+    saveas(gcf,fullfile(vr.fullPath,'summary_visualization.png'))
 end

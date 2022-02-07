@@ -13,7 +13,7 @@ end
 % because there is subtle fluctuations from day to day.
 %disp(size(daqData));
 data = daqData(1:3) - vr.ops.ballSensorOffset;
-
+% disp(daqData(1:3))
 % disp(data);
 % data
 % 1: pitch
@@ -54,5 +54,5 @@ else
 %     if vr.position(2)<vr.cueLength+vr.floorLength
 %         velocity(4)=0;
 %     end;
-disp(velocity)
+% disp(velocity)
 end

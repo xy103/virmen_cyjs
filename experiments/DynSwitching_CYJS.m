@@ -24,10 +24,11 @@ function vr = initializationCodeFun(vr)
 
     % General setup functions
     vr = initDAQ(vr);
+%     vr = outputVirmenTrigger(vr); % 01/12/22 CY added to trouble shoot missing pulses
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
-    vr = initLivePlots(vr);
+   %  vr = initLivePlots(vr);
 end
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.

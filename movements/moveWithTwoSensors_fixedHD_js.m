@@ -6,21 +6,20 @@ function velocity = moveWithTwoSensors_fixedHD_js(vr)
     if isempty(daqData)
         return
     end
+    % disp(daqData(1:3))
     % Access global mvData
     % Teensy can send voltage between 0 and 3.3V, so that ~1.65 V
     % corresponds to no movement. This voltage needs calibration
     % because there is subtle fluctuations from day to day.
-    %disp(size(daqData));
     data = daqData(1:3) - vr.ops.ballSensorOffset;
 
-    % disp(data);
     % data
     % 1: pitch
     % 2: roll
     % 3: yaw
 
     % Update velocity
-    alpha = vr.ops.forwardGain * vr.pitchGain;
+%     alpha = vr.ops.forwardGain * vr.pitchGain;
     flip = 1; % set to 1 if the mirror flips right and left in Virme9n
 
     if flip == true
