@@ -151,7 +151,7 @@ function switching_summary_visualization(session_data,parameters)
     for i_switch = 1:numel(switches)
         this_switch = switches(i_switch); 
         switch_reward{i_switch} = reward(max(1,this_switch - pre_switch) : min(n_trials,this_switch + post_switch));
-        switch_reward{i_switch} = [nan(1,min(0,pre_switch - this_switch)) switch_reward{i_switch} nan(1,min(0,this_switch + post_switch - n_trials))]; 
+        switch_reward{i_switch} = [nan(1,min(0,pre_switch - this_switch)) switch_reward{i_switch} nan(1,max(0,this_switch + post_switch - n_trials))]; 
     %     plot(smoothdata(switch_reward{i_switch},2,'gaussian',15),'color',[.5 .5 .5],'linewidth',1)
     end
 
