@@ -24,7 +24,6 @@ function vr = initializationCodeFun(vr)
 
     % General setup functions
     vr = initDAQ(vr);
-%     vr = outputVirmenTrigger(vr); % 01/12/22 CY added to trouble shoot missing pulses
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
@@ -33,8 +32,11 @@ end
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)    
-    vr = outputVirmenTrigger(vr); %08/20/21 CY added to aid sync b/w virmen and ephys
-
+%     vr = outputVirmenTrigger(vr); %08/20/21 CY added to aid sync b/w virmen and ephys
+    vr.trialIterations = vr.trialIterations + 1;
+    
+    vr = changeVirmenHighLow(vr); % 02/09/2022 CY changed pulses to high-low states
+    
     % collect behavior data
     vr = collectBehaviorIter_full(vr);
 

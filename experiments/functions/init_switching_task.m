@@ -2,6 +2,7 @@ function vr = init_switching_task(vr)
 % Code to initialize virmen object for switching task 
 % JS 7/15/21
     vr.ops = getRigInfo();
+    vr.taskName = 'sw'; % CY added 2/9/2022 to call on ao of pxi for switching only
     
     % evaluate background rbg values
     vr.backgroundR_val = eval(vr.exper.variables.backgroundR_val);

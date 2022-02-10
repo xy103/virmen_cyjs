@@ -34,6 +34,13 @@ if ~vr.debugMode
 
 end
 
+if contains(vr.taskName,'sw') && contains(vr.ops.rigName,'EphysRig')
+    % only for switching task on ephys rig
+    pxidaq_ao = daq.createSession('ni');
+    pxidaq_ao.addAnalogOutputChannel('PXI1Slot2','ao0','Voltage');
+    outputSingleScan(pxidaq_ao,[1.65]); % set constant output to avoid ball offset
+end
+
 end
 
 function avgMvData(src,event)

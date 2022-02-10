@@ -15,6 +15,7 @@ function vr = initializationCodeFun(vr)
 vr.debugMode = false;
 vr.ops = getRigInfo();
 vr = makeVirmenDir(vr); % creates a directory to store data to
+vr.taskName = 'lin';
 
 % linear track initialization
 % background color
