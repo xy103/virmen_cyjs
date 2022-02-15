@@ -1,4 +1,4 @@
-function [vr,sessionData] = collectTrialData(vr)
+function [vr,sessionData] = collectTrialData_visualize(vr)
 if vr.numTrials>1
     sessionData = [];
     for nTrial = 1:vr.numTrials
