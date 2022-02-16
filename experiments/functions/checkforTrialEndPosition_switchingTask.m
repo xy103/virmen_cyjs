@@ -55,10 +55,12 @@
                 vr.itiDur = vr.itiMiss;
                 %vr.wrongStreak = vr.wrongStreak + 1; % not used by CA
                 vr.Rewards = [vr.Rewards 0]; % append the vector containing binary reward info per trial
+                
             end
 
             % start the ITI
             vr = startITI_CA_Rig2(vr); 
+            vr = plot_lick(vr); 
         else % reward delay (prior to delivery)
             vr.behaviorData(9,vr.trialIterations) = 0;
             vr.behaviorData(8,vr.trialIterations) = -1;

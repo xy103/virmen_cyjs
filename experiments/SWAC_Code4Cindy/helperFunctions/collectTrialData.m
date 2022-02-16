@@ -17,5 +17,7 @@ if vr.numTrials>1
     experData = struct(vr.exper); % JS changed 7/16/21 for python compatibility
     save(sessionDataName,'sessionData','experData');
 %     fprintf('saved to %s',sessionDataName)
-    close all
+%     switching_summary_visualization(sessionData,experData.variables)
+%     saveas(gcf,fullfile(vr.fullPath,'summary_visualization.png'))
+%     close all
 end

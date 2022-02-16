@@ -27,6 +27,7 @@ function vr = initializationCodeFun(vr)
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
+    vr = init_lickPlot(vr);
    %  vr = initLivePlots(vr);
 end
 

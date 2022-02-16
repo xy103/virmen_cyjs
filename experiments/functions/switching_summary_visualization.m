@@ -123,19 +123,19 @@ function switching_summary_visualization(session_data,parameters)
         plot(smoothdata(rewards_L,'gaussian',15),'b','linewidth',1)
         plot(smoothdata(rewards_R,'gaussian',15),'r','linewidth',1)
         legend("L World","R World",'AutoUpdate','off')
-        subplot(1,2,6)
+        subplot(3,2,6)
         cla; hold on;
-        rewards_checker = reward; 
-        rewards_checker(checker == 0) = nan; 
-        rewards_noChecker = reward; 
-        rewards_noChecker(checker == 1) = nan;
-        plot(smoothdata(rewards_checker,'gaussian',15),'k:','linewidth',1)
-        plot(smoothdata(rewards_noChecker,'gaussian',15),'k-','linewidth',1)
-        lgd = legend("Checker","NoChecker",'AutoUpdate','off'); 
-        lgd.Layout.Tile = 'east';
+%         rewards_checker = reward; 
+%         rewards_checker(checker_world == 0) = nan; 
+%         rewards_noChecker = reward; 
+%         rewards_noChecker(checker_world == 1) = nan;
+%         plot(smoothdata(rewards_checker,'gaussian',15),'k:','linewidth',1)
+%         plot(smoothdata(rewards_noChecker,'gaussian',15),'k-','linewidth',1)
+%         lgd = legend("Checker","NoChecker",'AutoUpdate','off'); 
+%         lgd.Layout.Tile = 'east';
 
         for i_subplot = 1:3
-            subplot(3,2,3 * i_subplot)
+            subplot(3,2,2 * (i_subplot))
             xlim([0 n_trials])
             ylim([0 1])
             yline(.5,':')
