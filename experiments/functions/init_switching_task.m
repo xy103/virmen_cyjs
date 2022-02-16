@@ -68,9 +68,9 @@ function vr = init_switching_task(vr)
         vr.Checker_trial = [vr.Checker_trial 0];
     end
 
-    % init ITI and trial counting
-    vr.inITI = 0; % added JS
-    vr.trialIterations = 0; % added JS
+%     % init ITI and trial counting
+%     vr.inITI = 0; % added JS
+%     vr.trialIterations = 0; % added JS
 
     % Gain (JS from initTMaze)
     vr.yawGain = 1;
