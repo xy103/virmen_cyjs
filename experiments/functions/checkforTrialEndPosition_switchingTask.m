@@ -60,7 +60,7 @@
 
             % start the ITI
             vr = startITI_CA_Rig2(vr); 
-            vr = plot_lick(vr); 
+            
         else % reward delay (prior to delivery)
             vr.behaviorData(9,vr.trialIterations) = 0;
             vr.behaviorData(8,vr.trialIterations) = -1;
