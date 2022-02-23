@@ -125,14 +125,13 @@ function switching_summary_visualization(session_data,parameters)
         legend("L World","R World",'AutoUpdate','off')
         subplot(3,2,6)
         cla; hold on;
-%         rewards_checker = reward; 
-%         rewards_checker(checker_world == 0) = nan; 
-%         rewards_noChecker = reward; 
-%         rewards_noChecker(checker_world == 1) = nan;
-%         plot(smoothdata(rewards_checker,'gaussian',15),'k:','linewidth',1)
-%         plot(smoothdata(rewards_noChecker,'gaussian',15),'k-','linewidth',1)
-%         lgd = legend("Checker","NoChecker",'AutoUpdate','off'); 
-%         lgd.Layout.Tile = 'east';
+        rewards_checker = reward; 
+        rewards_checker(checker_world == 0) = nan; 
+        rewards_noChecker = reward; 
+        rewards_noChecker(checker_world == 1) = nan;
+        plot(smoothdata(rewards_checker,'gaussian',15),'k:','linewidth',1)
+        plot(smoothdata(rewards_noChecker,'gaussian',15),'k-','linewidth',1)
+        legend("Checker","NoChecker",'AutoUpdate','off'); 
 
         for i_subplot = 1:3
             subplot(3,2,2 * (i_subplot))
