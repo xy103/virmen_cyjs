@@ -15,3 +15,5 @@ vr.sessionStartTime = tic;
 vr.behaviorData = nan(9,1e4);
 % added by CA to introduce switches dynamically
 vr.switches = 0;
+% added by CY to count total iterations for sync pulse
+vr.totIterations = 0;

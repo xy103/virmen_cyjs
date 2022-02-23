@@ -14,7 +14,7 @@ thisIter(4) = vr.switchBlock; % added by CA: store the block number to retrieve 
 
 thisIter(7) = lickInfo; % store signal from lick detector (ca 0 for no contact, ca 5 for contact)
 
-% vr.trialIterations = vr.trialIterations + 1; % CY moved outside to start of run time code
+vr.trialIterations = vr.trialIterations + 1;
 vr.behaviorData([1:8,10],vr.trialIterations) = thisIter([1:8,10])';
 
 vr.behaviorData( 11:13, vr.trialIterations) = daqData(1:3); % record raw ball signal as well
