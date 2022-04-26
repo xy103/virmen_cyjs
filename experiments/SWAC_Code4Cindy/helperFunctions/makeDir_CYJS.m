@@ -9,7 +9,6 @@ else
     mouseInfo = inputdlg('Input the Mouse Number: ');
     vr.mouseNum = str2double(mouseInfo{1});
     vr.basePath = 'D:\DATA\Cindy'; % directory for VR behavior data
-
 end
 formatOut = 'yymmdd';
 vr.date = datestr(now,formatOut);

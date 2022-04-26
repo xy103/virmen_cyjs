@@ -27,7 +27,9 @@ function vr = initializationCodeFun(vr)
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
-    vr = init_lickPlot(vr);
+    if contains(vr.isEphys,'n')
+        vr = init_lickPlot(vr);
+    end
    %  vr = initLivePlots(vr);
 end
 

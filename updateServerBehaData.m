@@ -20,7 +20,8 @@ mouseLocal_names = sort(str2double({mouseLocal.name}));
 % [mouseLocal_names,idx] = sort(str2double({mouseLocal.name}));
 % mouseLocal = mouseLocal(idx);
 % mouseLocal(ismember(mouseLocal_names,[0 1])) = []; % testing
-mouseLocal_names(ismember(mouseLocal_names,[0 1])) = []; % testing
+mouseLocal_names(ismember(mouseLocal_names,[0 1])) = []; 
+mouseLocal_names(isnan(mouseLocal_names)) = []; 
 
 for this_mouse = mouseLocal_names
     % for each local mouse, check if it exist on server
