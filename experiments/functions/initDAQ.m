@@ -36,8 +36,9 @@ if ~vr.debugMode
 
 end
 
-if contains(vr.taskName,'sw') && contains(vr.ops.rigName,'EphysRig')
-    % only for switching task on ephys rig
+if contains(vr.taskName,'sw') && contains(vr.ops.rigName,'EphysRig') && contains(vr.isEphys,'y')
+    % only for switching task on ephys rig during recording 
+    % (not using PXI DAQ if not recording) 
     pxidaq_ao = daq.createSession('ni');
     pxidaq_ao.addAnalogOutputChannel('PXI1Slot2','ao0','Voltage');
     outputSingleScan(pxidaq_ao,[1.65]); % set constant output to avoid ball offset

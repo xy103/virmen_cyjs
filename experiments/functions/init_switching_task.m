@@ -3,14 +3,19 @@ function vr = init_switching_task(vr)
 % JS 7/15/21
     vr.ops = getRigInfo();
     vr.taskName = 'sw'; % CY added 2/9/2022 to call on ao of pxi for switching only
-    
-    isEphys = inputdlg('Is this ephys recording(y/n)? ');
-    if contains(isEphys,'y')
-        fprintf('Disabling plots for ephys recording\n');
+
+    % only check ephys status for CY ephys rig
+    if contains(vr.ops.rigName,'DESKTOP-IG064H8')
+        isEphys = inputdlg('Is this ephys recording(y/n)? ');
+        if contains(isEphys,'y')
+            fprintf('Disabling plots for ephys recording\n');
+        else
+            fprintf('Initializing lick plots\n');
+        end
+        vr.isEphys = isEphys;
     else
-        fprintf('Initializing lick plots\n');
+        vr.isEphys = 'n';
     end
-    vr.isEphys = isEphys;
     
     % evaluate background rbg values
     vr.backgroundR_val = eval(vr.exper.variables.backgroundR_val);
@@ -76,16 +81,13 @@ function vr = init_switching_task(vr)
         vr.Checker_trial = [vr.Checker_trial 0];
     end
 
-%     % init ITI and trial counting
-%     vr.inITI = 0; % added JS
-%     vr.trialIterations = 0; % added JS
-
     % Gain (JS from initTMaze)
     vr.yawGain = 1;
     vr.pitchGain = 1; %07/26 CY fixed from 20 to 1
     vr.targetRevealed = false; 
     
-    % initialize a bunch of counters
+    % initialize a bunch of counters (inITI, totIterations,
+    % trialIterations etc.)
     vr = initCounters(vr);
 end
 
