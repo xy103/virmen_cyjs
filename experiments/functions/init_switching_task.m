@@ -5,7 +5,7 @@ function vr = init_switching_task(vr)
     vr.taskName = 'sw'; % CY added 2/9/2022 to call on ao of pxi for switching only
 
     % only check ephys status for CY ephys rig
-    if contains(vr.ops.rigName,'DESKTOP-IG064H8')
+    if contains(vr.ops.rigName,'CYJS_EphysRig')
         isEphys = inputdlg('Is this ephys recording(y/n)? ');
         if contains(isEphys,'y')
             fprintf('Disabling plots for ephys recording\n');
