@@ -27,8 +27,8 @@ if ~vr.debugMode
     vr.dio.addDigitalChannel(vr.ops.dev,'Port0/Line0','OutputOnly');
     outputSingleScan(vr.dio,0); % CY added 0215, set sync pulse to 0 at start
 
-    vr.optoDIO = daq.createSession('ni');
-    vr.optoDIO.addDigitalChannel(vr.ops.dev,'Port0/Line7','OutputOnly');
+%     vr.optoDIO = daq.createSession('ni');
+%     vr.optoDIO.addDigitalChannel(vr.ops.dev,'Port0/Line7','OutputOnly');
     
     if vr.ops.useTeensyReward
         vr = initTeensy(vr);
