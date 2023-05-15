@@ -12,7 +12,7 @@ if (vr.velocity(1) > vr.runningThres) && (vr.iterSinceLastRew > vr.minIterBetwee
         vr.behaviorData(9,vr.trialIterations) = 1;
         vr.numRewards = vr.numRewards + 1;
         vr = giveReward(vr,1);
-        vr.iterSinceLastRew = 0;
+        vr.iterSinceLastRew = 0; % reset after reward
         % print out reward update
         fprintf('\n Time elapsed: %s \t',datestr(now-vr.timeStarted, 'HH:MM:SS')); % print the time elapsed 
         fprintf("%i rewards received \t\n",vr.numRewards)
