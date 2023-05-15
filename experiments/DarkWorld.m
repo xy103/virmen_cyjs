@@ -18,7 +18,7 @@ vr.ops = getRigInfo(); % contains info on reward magnitude
 vr = makeVirmenDir(vr); % creates a directory to store data to
 vr.taskName = 'dark';
 
-vr.currentWorld = 0; % fixed at 0
+vr.currentWorld = 1; % fixed at 1
 vr = initDAQ(vr); 
 vr = initCounters(vr);  % CY: disable? won't need most of them
 vr.iterSinceLastRew = inf; % new counter specific to this experiment
@@ -27,6 +27,7 @@ vr.iterSinceLastRew = inf; % new counter specific to this experiment
 vr.runningThres = eval(vr.exper.variables.runningThres);
 vr.rewardProb = eval(vr.exper.variables.rewardProb);
 vr.minIterBetweenRew = eval(vr.exper.variables.minIterBetweenRew);
+vr.maxRewAllowed = eval(vr.exper.variables.maxRewAllowed);
 
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
@@ -35,6 +36,10 @@ vr = outputVirmenTrigger(vr); % 08/20/21 CY added to aid sync b/w virmen and eph
 vr = collectBehaviorIter_TMazeCYJS(vr); % collect behavior data
 % vr = checkForManualReward(vr); % Deliver reward if 'r' key pressed
 vr = checkForDarkWorldRunningRew(vr); % Check for forward velocity, randomly dispense reward if running above threshold
+% stop the experiment if max amount of rewards received
+if vr.numRewards >= vr.maxRewAllowed
+    vr.experimentEnded = 1;
+end
 
 % --- TERMINATION code: executes after the ViRMEn engine stops.
 function vr = terminationCodeFun(vr)
