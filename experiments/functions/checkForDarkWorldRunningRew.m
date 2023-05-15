@@ -14,8 +14,8 @@ if (vr.velocity(1) > vr.runningThres) && (vr.iterSinceLastRew > vr.minIterBetwee
         vr = giveReward(vr,1);
         vr.iterSinceLastRew = 0;
         % print out reward update
-        vr = printText2CommandLine_linearTrack(vr);
-        fprintf("%i rewards received \t %i rewards consumed \n",vr.numRewards,vr.numRewards_consumed)
+        fprintf('\n Time elapsed: %s \t',datestr(now-vr.timeStarted, 'HH:MM:SS')); % print the time elapsed 
+        fprintf("%i rewards received \t\n",vr.numRewards)
     end
 else % no reward delivered, add one to iterSinceLastRew
     vr.iterSinceLastRew = vr.iterSinceLastRew + 1;
