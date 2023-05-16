@@ -20,7 +20,7 @@ vr.taskName = 'dark';
 
 vr.currentWorld = 1; % fixed at 1
 vr = initDAQ(vr); 
-vr = initCounters(vr);  % CY: disable? won't need most of them
+vr = initCounters(vr);  % CY note: won't need most of them
 vr.iterSinceLastRew = inf; % new counter specific to this experiment
 
 % custom variables that can be changed in virmen gui

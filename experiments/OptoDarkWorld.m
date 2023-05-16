@@ -22,6 +22,8 @@ vr.taskName = 'dark';
 vr.currentWorld = 1; % fixed at 1
 vr = initDAQ(vr); % includes opto_ao init
 vr = initCounters(vr);  % CY: disable? won't need most of them
+vr.behaviorData = nan(14,1e6); % overwrite init
+
 vr.iterSinceLastRew = inf; % new counter specific to this experiment
 
 % custom variables that can be changed in virmen gui
@@ -30,6 +32,8 @@ vr.rewardProb = eval(vr.exper.variables.rewardProb);
 vr.minIterBetweenRew = eval(vr.exper.variables.minIterBetweenRew);
 vr.maxRewAllowed = eval(vr.exper.variables.maxRewAllowed);
 
+% opto specific variables
+vr = initOpto_CY(vr);
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)
@@ -37,13 +41,17 @@ function vr = runtimeCodeFun(vr)
 vr.totIterations = vr.totIterations + 1; % use total iteration to decide high low state, not trialIterations!
 vr = changeVirmenHighLow(vr); % 02/09/2022 CY changed pulses to high-low states
 
-vr = collectBehaviorIter_TMazeCYJS(vr); % collect behavior data
 % vr = checkForManualReward(vr); % Deliver reward if 'r' key pressed
 vr = checkForDarkWorldRunningRew(vr); % Check for forward velocity, randomly dispense reward if running above threshold
 % stop the experiment if max amount of rewards received
-if vr.numRewards >= vr.maxRewAllowed
-    vr.experimentEnded = 1;
-end
+% if vr.numRewards >= vr.maxRewAllowed
+%     vr.experimentEnded = 1;
+% end
+
+% determine if optogenetics is given
+vr = checkForOptoDelivery(vr);
+vr = collectBehaviorIter_TMazeCYJS(vr); % collect behavior data
+
 
 % --- TERMINATION code: executes after the ViRMEn engine stops.
 function vr = terminationCodeFun(vr)
