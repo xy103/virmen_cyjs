@@ -7,7 +7,7 @@ function vr = checkForDarkWorldRunningRew(vr)
 if (vr.velocity(1) > vr.runningThres) && (vr.iterSinceLastRew > vr.minIterBetweenRew)
     % randomly generate a number between 1 and 1000 for comparison
     random_comp = randi(1000); 
-    if vr.rewardProb <= (random_comp/1000)
+    if (random_comp/1000)<= vr.rewardProb
         % give reward and store reward time
         vr.behaviorData(9,vr.trialIterations) = 1;
         vr.numRewards = vr.numRewards + 1;

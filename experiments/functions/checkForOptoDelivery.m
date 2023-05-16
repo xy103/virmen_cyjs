@@ -15,22 +15,28 @@ if ismember(vr.totIterations,vr.optoOnsetIter)
     fprintf(" Light inhibition No.%i, max voltage %.1f mV\t\n",vr.nDeliveredOpto,vr.currentMaxVoltage)
 end
 
-if vr.optoOn % indicator for opto light
-    % determine output voltage based on how much time has eplased since
-    % light was turned on
-    vr.optoOnSec = vr.optoOnSec + vr.dt; % update how much time opto has been on
-    if vr.optoOnsec < vr.optoRampDur % ramp up
-        vr.optoOutVoltage = (1/vr.optoRampDur * vr.OptoOnSec)*vr.currentMaxVoltage;
-    elseif (vr.optoOnsec <= vr.optoRampDur+vr.optoLightDur) % sustained period
-        vr.optoOutVoltage = vr.currentMaxVoltage;
-    elseif  (vr.optoOnsec <= vr.optoRampDur*2+vr.optoLightDur)% ramp down
-        vr.optoOutVoltage = (1-1/vr.optoRampDur * (vr.OptoOnSec-vr.optoRampDur-vr.optoLightDur))*vr.currentMaxVoltage;
-    else
-        vr.optoOutVoltage = 0;
-        vr.optoOn = 0; % turn opto off
-        vr.optoOnSec = nan; 
-    end
-    outputSingleScan(vr.opto_ao,[vr.optoOutVoltage])
+if vr.optoOn==1 % indicator for opto light
+    fprintf('getting here in the second loop!')
+%     % determine output voltage based on how much time has eplased since
+%     % light was turned on
+%     vr.optoOnSec = vr.optoOnSec + vr.dt; % update how much time opto has been on
+%     %     if vr.optoOnsec < vr.optoRampDur % ramp up
+%     %         vr.optoOutVoltage = (1/vr.optoRampDur * vr.OptoOnSec)*vr.currentMaxVoltage;
+%     %     elseif (vr.optoOnsec <= vr.optoRampDur+vr.optoLightDur) % sustained period
+%     %         vr.optoOutVoltage = vr.currentMaxVoltage;
+%     %     elseif (vr.optoOnsec <= vr.optoRampDur*2+vr.optoLightDur)% ramp down
+%     %         vr.optoOutVoltage = (1-1/vr.optoRampDur * (vr.OptoOnSec-vr.optoRampDur-vr.optoLightDur))*vr.currentMaxVoltage;
+%     %     else
+%     %         vr.optoOutVoltage = 0;
+%     %         vr.optoOn = 0; % turn opto off
+%     %         vr.optoOnSec = nan;
+%     %     end
+%     if (vr.optoOnsec <= vr.optoRampDur*2+vr.optoLightDur)
+%         vr.optoOutVoltage = vr.currentMaxVoltage;
+%     else
+%         vr.optoOutVoltage = 0;
+%     end
+%     outputSingleScan(vr.opto_ao,vr.optoOutVoltage)
 end
 
 

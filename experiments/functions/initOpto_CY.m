@@ -1,6 +1,7 @@
 function vr = initOpto_CY(vr)
 
-vr.OptoOn = 0; % initialize opto indicator to be 0 (change to 1 when opto is on) 
+vr.optoOn = 0; % initialize opto indicator to be 0 (change to 1 when opto is on) 
+vr.optoOnsec = nan; 
 
 vr.optoMaxVoltage = eval(vr.exper.variables.optoMaxVoltage); % max voltage value
 vr.optoMinVoltage = eval(vr.exper.variables.optoMinVoltage); % min voltage value
@@ -20,5 +21,5 @@ vr.nDeliveredOpto = 0; % how many have already been delivered
 vr.optoOnsetIter = cumsum(randi([vr.minIterBetweenOpto vr.maxIterBetweenOpto],[vr.totOpto 1]));
 
 fprintf("%i inhibitions scheduled, rangeing from %.2f to %.2f mV in %.2f mV increment \t\n",vr.totOpto,vr.optoMinVoltage,vr.optoMaxVoltage,vr.optoVoltageIncrement)
-
+fprintf("First inhibition is iter %i\n",vr.optoOnsetIter(1));
 

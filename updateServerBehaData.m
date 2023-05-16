@@ -1,4 +1,4 @@
-opfunction updateServerBehaData
+function updateServerBehaData
 
 % this function should be run at the end of each day
 % the copying mechanism does not check for number of sessions for

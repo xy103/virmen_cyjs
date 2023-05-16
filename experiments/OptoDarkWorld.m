@@ -40,6 +40,7 @@ function vr = runtimeCodeFun(vr)
 % vr = outputVirmenTrigger(vr); % 08/20/21 CY added to aid sync b/w virmen and ephys
 vr.totIterations = vr.totIterations + 1; % use total iteration to decide high low state, not trialIterations!
 vr = changeVirmenHighLow(vr); % 02/09/2022 CY changed pulses to high-low states
+vr = collectBehaviorIter_TMazeCYJS(vr); % collect behavior data
 
 % vr = checkForManualReward(vr); % Deliver reward if 'r' key pressed
 vr = checkForDarkWorldRunningRew(vr); % Check for forward velocity, randomly dispense reward if running above threshold
@@ -50,7 +51,6 @@ vr = checkForDarkWorldRunningRew(vr); % Check for forward velocity, randomly dis
 
 % determine if optogenetics is given
 vr = checkForOptoDelivery(vr);
-vr = collectBehaviorIter_TMazeCYJS(vr); % collect behavior data
 
 
 % --- TERMINATION code: executes after the ViRMEn engine stops.
