@@ -49,7 +49,7 @@ vr = checkForDarkWorldRunningRew(vr); % Check for forward velocity, randomly dis
 %     vr.experimentEnded = 1;
 % end
 
-% determine if optogenetics is given
+% determine if optogenetics is given and save output voltage
 vr = checkForOptoDelivery(vr);
 
 

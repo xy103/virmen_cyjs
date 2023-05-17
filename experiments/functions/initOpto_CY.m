@@ -1,7 +1,8 @@
 function vr = initOpto_CY(vr)
 
 vr.optoOn = 0; % initialize opto indicator to be 0 (change to 1 when opto is on) 
-vr.optoOnsec = nan; 
+vr.optoOnSec = 0; % keep at 0 at init
+vr.optoOutVoltage = 0; 
 
 vr.optoMaxVoltage = eval(vr.exper.variables.optoMaxVoltage); % max voltage value
 vr.optoMinVoltage = eval(vr.exper.variables.optoMinVoltage); % min voltage value
