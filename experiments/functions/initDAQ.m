@@ -36,7 +36,8 @@ if ~vr.debugMode
 
 end
 
-if contains(vr.taskName,'sw') && contains(vr.ops.rigName,'EphysRig') && contains(vr.isEphys,'y')
+% if contains(vr.taskName,'sw') && contains(vr.ops.rigName,'EphysRig') && contains(vr.isEphys,'y')
+if contains(vr.ops.rigName,'EphysRig')
     % only for switching task on ephys rig during recording 
     % (not using PXI DAQ if not recording) 
     pxidaq_ao = daq.createSession('ni');
