@@ -29,7 +29,8 @@ if ~vr.debugMode
 
     vr.opto_ao = daq.createSession('ni');
     vr.opto_ao.addAnalogOutputChannel(vr.ops.dev,'ao1','Voltage');
-    
+    outputSingleScan(vr.opto_ao,0); % set to 0 to avoid random light on
+
     if vr.ops.useTeensyReward
         vr = initTeensy(vr);
     end
