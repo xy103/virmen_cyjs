@@ -15,7 +15,7 @@ if (vr.trialOptoVar <= vr.optoThreshold) && (vr.trialIterations == 1)
     vr.optoOnSec = 0; % time in seconds since the current opto stimulation onset
     vr.optoOutVoltage = 0; % set output voltage to 0 to start
     vr.nDeliveredOpto = vr.nDeliveredOpto+1;
-    vr.currentMaxVoltage = vr.allOptoVoltage(vr.nDeliveredOpto);
+    vr.currentMaxVoltage = vr.optoMaxVoltage; % vr.allOptoVoltage(vr.nDeliveredOpto);
     % print out update
     % fprintf('\n Time elapsed: %s \t',datestr(now-vr.timeStarted, 'HH:MM:SS')); % print the time elapsed 
     fprintf(" Light inhibition #%i,\t max voltage %.1f mV\t\n",vr.nDeliveredOpto,vr.currentMaxVoltage)
