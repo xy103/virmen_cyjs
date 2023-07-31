@@ -41,11 +41,11 @@ function vr = runtimeCodeFun(vr)
     
     vr = changeVirmenHighLow(vr); % 02/09/2022 CY changed pulses to high-low states
     
-    % determine if optogenetics is given and save output voltage
-    vr = checkForOptoDelivery_SW(vr);
-
     % collect behavior data
     vr = collectBehaviorIter_full(vr);
+
+    % determine if optogenetics is given and save output voltage
+    vr = checkForOptoDelivery_SW(vr);
 
     % Decrease velocity by friction coefficient (can be zero)
     vr = adjustFriction(vr);
