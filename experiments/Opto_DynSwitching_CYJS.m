@@ -54,7 +54,7 @@ function vr = runtimeCodeFun(vr)
     vr = checkforTrialEndPosition_switchingTask(vr); 
 
     % if we are in ITI, handle trial reset and switch block logic
-    vr = checkITI_CA(vr);
+    vr = checkITI_opto_CYJB(vr);
 
     % If we are 1) in a non-visually-guided trial 2) cue not revealed 3) past tgt hidepoint and 4) in ISI 
     vr = handle_target_hiding_cyjs(vr); 
