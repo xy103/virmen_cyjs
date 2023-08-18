@@ -18,7 +18,7 @@ function vr = initLivePlots(vr)
     vr.livePlot_opt = struct; 
     vr.livePlot_opt.minLickV = 1; % min value for lick detection
     vr.livePlot_opt.lickV = 0.5; % voltage for lick detection
-    if contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    if contains(vr.exper_name,'linearTrack')
         vr.livePlot_opt.worldColors = lines(vr.nWorlds); % trial type colors for lick raster 
         vr.livePlot_opt.worldSymbols = '..'; % trial type symbols for lick raster 
     elseif contains(vr.exper_name,'dynSwitching_CYJS')
