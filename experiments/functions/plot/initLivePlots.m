@@ -18,7 +18,7 @@ function vr = initLivePlots(vr)
     vr.livePlot_opt = struct; 
     vr.livePlot_opt.minLickV = 1; % min value for lick detection
     vr.livePlot_opt.lickV = 0.5; % voltage for lick detection
-    if contains(vr.exper_name,'linearTrack')
+    if contains(vr.exper_name,'linearTrack_')
         vr.livePlot_opt.worldColors = lines(vr.nWorlds); % trial type colors for lick raster 
         vr.livePlot_opt.worldSymbols = '..'; % trial type symbols for lick raster 
     elseif contains(vr.exper_name,'dynSwitching_CYJS')
@@ -42,7 +42,7 @@ function vr = initLivePlots(vr)
     vr.trial_world_ITIlickT = []; 
     if contains(vr.exper_name,'dynSwitching_CYJS')
         vr.live_saved_xy = cell(4,1);
-    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_')
         vr.live_saved_xy = cell(vr.nWorlds,1); 
     end
     
@@ -63,7 +63,7 @@ function vr = initLivePlots(vr)
     yticks([]);
     if contains(vr.exper_name,'dynSwitching_CYJS')
         xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMissBase)]); 
-    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_')
         xlim([0,vr.rewardDelay + max(vr.itiCorrect,vr.itiMiss)]); 
     end
     set(gca, 'YDir','reverse');
@@ -84,7 +84,7 @@ function vr = initLivePlots(vr)
         ylabel("Y Position (cm)");
         draw_Ymaze(vr);
         
-    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_')
         subplot(2,2,[2 4]); hold on
         ylim([0 vr.floorLength]);
         xlim([-vr.floorWidth/2 vr.floorWidth/2]);
