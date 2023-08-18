@@ -54,7 +54,7 @@ function vr = fading_runningTraj_livePlot(vr)
         end
 
         
-    elseif contains(vr.exper_name,'linearTrack_RectangeMiddle_CYJS')
+    elseif contains(vr.exper_name,'linearTrack_')
         % update live_saved_xy
         if numel(vr.live_saved_xy{this_world}) < vr.livePlot_opt.n_save_trials % append if fewer than save trials
             vr.live_saved_xy{this_world} = [vr.live_saved_xy{this_world} ; {[x' y']}];
