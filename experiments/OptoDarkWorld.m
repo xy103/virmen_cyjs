@@ -60,4 +60,5 @@ if ~vr.debugMode
     delete(vr.ai),
     delete(vr.ao),
 end
+outputSingleScan(vr.opto_ao,0); % set to 0
 vr = saveTrialData(vr); % dark world is one big trial

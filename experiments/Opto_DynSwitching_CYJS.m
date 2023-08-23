@@ -64,6 +64,8 @@ end
 % --- TERMINATION code: executes after the ViRMEn engine stops.
 function vr = terminationCodeFun(vr)
     if ~vr.debugMode
+        outputSingleScan(vr.opto_ao,0);
+        fprintf('Opto light off\n');
         stop(vr.ai),
         delete(vr.ai),
         delete(vr.ao),

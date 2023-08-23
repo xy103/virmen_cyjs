@@ -14,6 +14,7 @@ vr.optoLightDur = eval(vr.exper.variables.optoLightDur); % sustained light durat
 % vr.optoRepeat = eval(vr.exper.variables.optoRepeat); % how many repetition per light level
 % vr.minIterBetweenOpto = eval(vr.exper.variables.minIterBetweenOpto); % how many iteration to wait until giving next opto
 % vr.maxIterBetweenOpto = eval(vr.exper.variables.maxIterBetweenOpto); % how many iteration to wait until giving next opto
+vr.optoTriggerPoint = eval(vr.exper.variables.optoTriggerPoint);
 
 % need to determine based on opto parameters how many runs of opto
 % stimulation to give 
