@@ -19,7 +19,7 @@ if vr.inITI == 1
     end
 
     % if opto has initiated and we are still in ITI, proceed with opto
-    if vr.optoOn && vr.itiTime <= vr.itiDur
+    if vr.optoOn && (vr.itiTime <= vr.itiDur)
         vr.optoOnSec = vr.optoOnSec + vr.dt; % update how much time opto has been on
         % determine output voltage based on how much time has eplased since
         % light was turned on
@@ -34,17 +34,17 @@ if vr.inITI == 1
             vr.optoOutVoltage = 0;
             vr.optoOn = 0; % turn opto off
             vr.optoOnSec = 0; % default to 0 since nan gives issue with comparison
-            vr.optoElapsed = 0;
+           % vr.optoElapsed = 0;
         end
         outputSingleScan(vr.opto_ao,vr.optoOutVoltage)
     end
 
-    % if opto is running and the ITI ends, cut it off and save optoElapsed,
-    % then feed to checkForOptoDelivery_SW for continuation of opto during
-    % trial
-    if vr.optoOn && vr.itiTime > vr.itiDur
-        vr.optoElapsed = vr.optoOnSec;
-    end
+    % % if opto is running and the ITI ends, cut it off and save optoElapsed,
+    % % then feed to checkForOptoDelivery_SW for continuation of opto during
+    % % trial
+    % if vr.optoOn && vr.itiTime > vr.itiDur
+    %     vr.optoElapsed = vr.optoOnSec;
+    % end
 
     if vr.itiTime > vr.itiDur 
 

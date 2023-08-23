@@ -5,7 +5,6 @@ function vr = checkForOptoDelivery_SW_ITI(vr)
 
 if vr.trialIterations == 1
     vr.trialOptoVar = rand;
-    vr.optoOnSec = vr.optoOnsec + vr.optoElapsed;
 end
 
 if vr.optoOn % indicator for opto light
