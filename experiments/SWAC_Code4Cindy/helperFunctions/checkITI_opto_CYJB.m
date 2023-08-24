@@ -7,7 +7,7 @@ if vr.inITI == 1
     vr.itiTime = toc(vr.itiStartTime);
 
     % start opto ramp up based on variable trigger point
-    if (vr.trialOptoVar <= vr.optoThreshold) && ((vr.itiTime > vr.optoTriggerPoint) && vr.optoOn == 0)
+    if (vr.trialOptoVar <= vr.optoThreshold) && (((vr.itiTime > vr.optoTriggerPoint) && vr.itiTime < vr.optoTriggerPoint+.1) && vr.optoOn == 0)
         vr.optoOn = 1; 
         vr.optoOnSec = 0; % time in seconds since the current opto stimulation onset
         vr.optoOutVoltage = 0; % set output voltage to 0 to start
@@ -29,7 +29,7 @@ if vr.inITI == 1
             vr.optoOutVoltage = vr.currentMaxVoltage;
         elseif (vr.optoOnSec <= vr.optoRampDur*2+vr.optoLightDur)% ramp down
             vr.optoOutVoltage = (1-1/vr.optoRampDur * (vr.optoOnSec-vr.optoRampDur-vr.optoLightDur))*vr.currentMaxVoltage;
-        elseif vr.OptoOnSec > ((vr.optoRampDur * 2) + vr.optoLightDur)
+        elseif vr.optoOnSec >= ((vr.optoRampDur * 2) + vr.optoLightDur)
             fprintf(" Light off after %.1f s\n",vr.optoOnSec)
             vr.optoOutVoltage = 0;
             vr.optoOn = 0; % turn opto off
