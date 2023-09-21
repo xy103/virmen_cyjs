@@ -5,10 +5,9 @@ function vr = checkForOptoDelivery_SW_ITI(vr)
 
 if vr.trialIterations == 1
     vr.trialOptoVar = rand;
-    vr.optoOnSec = vr.optoOnsec + vr.optoElapsed;
 end
 
-if vr.optoOn % indicator for opto light
+if vr.optoOn && (vr.optoOnSec ~= 0)% indicator for opto light
     vr.optoOnSec = vr.optoOnSec + vr.dt; % update how much time opto has been on
     % determine output voltage based on how much time has eplased since
     % light was turned on

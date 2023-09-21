@@ -60,4 +60,10 @@ if ~vr.debugMode
     delete(vr.ai),
     delete(vr.ao),
 end
+outputSingleScan(vr.opto_ao,0); % set to 0
 vr = saveTrialData(vr); % dark world is one big trial
+fprintf('\n Saving opto experiment info'),
+sessionDataName = fullfile(vr.fullPath,'experData');
+experData = struct(vr.exper); % JS changed 7/16/21 for python compatibility
+save(sessionDataName,'experData');
+

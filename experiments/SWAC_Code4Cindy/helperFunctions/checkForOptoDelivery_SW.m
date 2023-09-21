@@ -9,9 +9,9 @@ if vr.trialIterations == 1
     vr.trialOptoVar = rand;
 end
 
-if (vr.trialOptoVar <= vr.optoThreshold) && (vr.trialIterations == 1)
+if (vr.trialOptoVar <= vr.optoThreshold) && (vr.trialIterations == 1) && (vr.optoOn ==1)
     % determine whether to deliver opto on current trial
-    vr.optoOn = 1; 
+%     vr.optoOn = 1; 
     vr.optoOnSec = 0; % time in seconds since the current opto stimulation onset
     vr.optoOutVoltage = 0; % set output voltage to 0 to start
     vr.nDeliveredOpto = vr.nDeliveredOpto+1;
