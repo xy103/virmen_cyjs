@@ -57,7 +57,7 @@ function vr = runtimeCodeFun(vr)
     vr = collectBehaviorIter_full(vr);
 
     % determine if optogenetics is given and save output voltage
-    vr = checkForOptoDelivery_SW_ITI(vr);
+    vr = checkForOptoDelivery_SW(vr);
 
 %     % Decrease velocity by friction coefficient (can be zero)
 %     vr = adjustFriction(vr);
@@ -81,6 +81,7 @@ function vr = terminationCodeFun(vr)
         stop(vr.ai),
         delete(vr.ai),
         delete(vr.ao),
+        delete(vr.opto_ao)
         [vr,~] = collectTrialData_visualize(vr); % save behavior data
     end
 end
