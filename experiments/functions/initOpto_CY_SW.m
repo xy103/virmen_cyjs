@@ -3,7 +3,7 @@ function vr = initOpto_CY_SW(vr)
 vr.optoOn = 0; % initialize opto indicator to be 0 (change to 1 when opto is on) 
 vr.optoOnSec = 0; % keep at 0 at init
 vr.optoOutVoltage = 0; 
-vr.trialOptoVar = 0; % initialize random opto variable for probabilistic stimulation (updated at iteration 1 each trial)
+vr.trialOptoVar = 0; % initialize random variable for probabilistic opto delivery (updated at iteration 1 of each trial)
 
 vr.optoMaxVoltage = eval(vr.exper.variables.optoMaxVoltage); % max voltage value
 vr.optoThreshold = eval(vr.exper.variables.optoThreshold); % probability/threshold for opto stimulation

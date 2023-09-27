@@ -1,6 +1,7 @@
 
 function code = Opto_DynSwitching_CYJS
-% Linear Track   Code for the ViRMEn experiment Linear Track.
+% Code for the ViRMEn experiment DynSwitching that also deliver optogenetic
+% inhibition using ramped light
 %   code = Linear Track   Returns handles to the functions that ViRMEn
 %   executes during engine initialization, runtime and termination.
 
