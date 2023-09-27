@@ -1,8 +1,12 @@
 
 function code = MazeOpto_DynSwitching
-% Code for the ViRMEn experiment DynSwitching that also deliver optogenetic
-% inhibition using ramped light within maze 
-%   code = Linear Track   Returns handles to the functions that ViRMEn
+% Code for the ViRMEn experiment DynSwitching that deliver optogenetic
+% inhibition using ramped light within maze (ramping start in previous
+% trial ITI) 
+
+% already assume checker_v2_grayarm set up 
+
+%   code = MazeOpto_DynSwitching  Returns handles to the functions that ViRMEn
 %   executes during engine initialization, runtime and termination.
 
 % Begin header code - DO NOT EDIT
@@ -23,6 +27,9 @@ function vr = initializationCodeFun(vr)
 
     % opto specific variables
     vr = initOpto_CY_SW(vr);
+    % init variables specific to this instantiation of opto delivery
+    vr.trialOptoVar = 0; % initialize random variable for probabilistic opto delivery (updated at iteration 1 of each trial)
+    vr.optoTriggerPoint = eval(vr.exper.variables.optoTriggerPoint); % time point after which opto signal can be delivered
 
     % General setup functions
     vr = initDAQ(vr);
