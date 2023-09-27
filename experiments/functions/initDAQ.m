@@ -19,7 +19,7 @@ if ~vr.debugMode
     startBackground(vr.ai),
     pause(1e-2),
     
-    vr.ao = daq.createSession('ni');
+    vr.ao = daq.createSession('ni'); % reward valve signal
     vr.ao.addAnalogOutputChannel(vr.ops.dev,'ao0','Voltage');
     vr.ao.Rate = 1e3;
     
@@ -27,7 +27,7 @@ if ~vr.debugMode
     vr.dio.addDigitalChannel(vr.ops.dev,'Port0/Line0','OutputOnly');
     outputSingleScan(vr.dio,0); % CY added 0215, set sync pulse to 0 at start
 
-    vr.opto_ao = daq.createSession('ni');
+    vr.opto_ao = daq.createSession('ni'); % opto light signal
     vr.opto_ao.addAnalogOutputChannel(vr.ops.dev,'ao1','Voltage');
     outputSingleScan(vr.opto_ao,0); % set to 0 to avoid random light on
 
