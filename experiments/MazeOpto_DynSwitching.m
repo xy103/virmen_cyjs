@@ -24,15 +24,17 @@ function vr = initializationCodeFun(vr)
     vr = makeDir_CYJS(vr); % JS changed from makeDirSNC_CA_Camera_Rig2
 
     vr = init_switching_task(vr); % just encapsulating a lot of init code in this fn
+    % add allowCheckerAfterNTrials
+    vr.allowCheckerAfterNTrials = eval(vr.exper.variables.allowCheckerAfterNTrials);
+
+    % General setup functions
+    vr = initDAQ(vr);
 
     % opto specific variables
     vr = initOpto_CY_SW(vr);
     % init variables specific to this instantiation of opto delivery
     vr.trialOptoVar = 0; % initialize random variable for probabilistic opto delivery (updated at iteration 1 of each trial)
     vr.optoTriggerPoint = eval(vr.exper.variables.optoTriggerPoint); % time point after which opto signal can be delivered
-
-    % General setup functions
-    vr = initDAQ(vr);
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
