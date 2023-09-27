@@ -4,19 +4,22 @@ function vr = init_switching_task(vr)
     vr.ops = getRigInfo();
     vr.taskName = 'sw'; % CY added 2/9/2022 to call on ao of pxi for switching only
 
-%     % only check ephys status for CY ephys rig
-%     if contains(vr.ops.rigName,'CYJS_EphysRig')
-%         isEphys = inputdlg('Is this ephys recording(y/n)? ');
-%         if contains(isEphys,'y')
-%             fprintf('Disabling plots for ephys recording\n');
-%         else
-%             fprintf('Initializing lick plots\n');
-%         end
-%         vr.isEphys = isEphys;
-%     else
-%         vr.isEphys = 'n';
-%     end
-    vr.isEphys = 'n';
+    % only check ephys status for CY ephys rig
+    if contains(vr.ops.rigName,'CYJS_EphysRig')
+        isEphys = inputdlg('Is this ephys recording(y/n)? ');
+        isEphys = lower(isEphys{1}); % make it case insensitive
+        if contains(isEphys,'y')
+            fprintf('Disabling plots for ephys recording\n');
+            vr.isEphys = true;
+        else
+            fprintf('Initializing lick plots\n');
+            vr.isEphys = false;
+        end
+    else
+        fprintf('Initializing lick plots\n');
+        vr.isEphys = false;
+    end
+%     vr.isEphys = false;
     
     % evaluate background rbg values
     vr.backgroundR_val = eval(vr.exper.variables.backgroundR_val);

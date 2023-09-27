@@ -27,10 +27,10 @@ function vr = initializationCodeFun(vr)
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
-    if contains(vr.isEphys,'n')
+    if ~vr.isEphys
         vr = init_lickPlot(vr);
     end
-   %  vr = initLivePlots(vr);
+
 end
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.

@@ -29,7 +29,7 @@ function vr = initializationCodeFun(vr)
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
-    if ~contains(vr.isEphys,'y') % anything other than y
+    if ~vr.isEphys 
         vr = init_lickPlot(vr);
     end
 
