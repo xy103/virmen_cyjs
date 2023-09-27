@@ -9,13 +9,13 @@ vr.trialOptoVar = 0; % initialize random variable for probabilistic opto deliver
 vr.optoMaxVoltage = eval(vr.exper.variables.optoMaxVoltage); % max voltage value
 vr.optoThreshold = eval(vr.exper.variables.optoThreshold); % probability/threshold for opto stimulation
 
-vr.optoRampUpDur = eval(vr.exper.variables.optoRampDur); % ramp on duration in sec 
-vr.optoRampDownDur = eval(vr.exper.variables.optoRampDur); % ramp off duration in sec 
+vr.optoRampUpDur = eval(vr.exper.variables.optoRampUpDur); % ramp on duration in sec 
+vr.optoRampDownDur = eval(vr.exper.variables.optoRampDownDur); % ramp off duration in sec 
 vr.optoLightDur = eval(vr.exper.variables.optoLightDur); % sustained light duration in sec 
 
 vr.optoTriggerPoint = eval(vr.exper.variables.optoTriggerPoint); % time point after which opto signal can be delivered
 
 vr.nDeliveredOpto = 0; % how many have already been delivered
 
-fprintf("Max voltage is %.2f mV, with %.2f s ramp up, %.2f s sustained, and %.2f s ramp down ",vr.optoMaxVoltage,vr.optoRampUpDur,vr.optoLightDur,vr.optoRampDownDur)
+fprintf("Max voltage is %.2f mV, with %.2f s ramp up, %.2f s sustained, and %.2f s ramp down\n",vr.optoMaxVoltage,vr.optoRampUpDur,vr.optoLightDur,vr.optoRampDownDur)
 end
