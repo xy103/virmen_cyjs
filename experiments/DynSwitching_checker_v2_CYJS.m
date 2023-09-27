@@ -45,8 +45,8 @@ function vr = runtimeCodeFun(vr)
     % collect behavior data
     vr = collectBehaviorIter_full(vr);
 
-    % Decrease velocity by friction coefficient (can be zero)
-    vr = adjustFriction(vr);
+%     % Decrease velocity by friction coefficient (can be zero)
+%     vr = adjustFriction(vr);
 
     % check for trial-terminating position and potentially deliver reward
     vr = checkforTrialEndPosition_switchingTask(vr); 

@@ -24,6 +24,8 @@ function vr = initializationCodeFun(vr)
     vr = makeDir_CYJS(vr); % JS changed from makeDirSNC_CA_Camera_Rig2
 
     vr = init_switching_task(vr); % just encapsulating a lot of init code in this fn
+    vr.behaviorData = nan(14,1e6); % overwrite init to allocate more memory
+
     % add allowCheckerAfterNTrials
     vr.allowCheckerAfterNTrials = eval(vr.exper.variables.allowCheckerAfterNTrials);
 
@@ -57,8 +59,8 @@ function vr = runtimeCodeFun(vr)
     % determine if optogenetics is given and save output voltage
     vr = checkForOptoDelivery_SW_ITI(vr);
 
-    % Decrease velocity by friction coefficient (can be zero)
-    vr = adjustFriction(vr);
+%     % Decrease velocity by friction coefficient (can be zero)
+%     vr = adjustFriction(vr);
 
     % check for trial-terminating position and potentially deliver reward
     vr = checkforTrialEndPosition_switchingTask(vr); 
