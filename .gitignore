@@ -5,3 +5,5 @@ shapes/shapeRegularPolygon_new.m
 transformations/transformToroidalMex_new.c
 *.asv
 experiments/functions/getRigInfo.m
+experiments/functions/initDAQ_for_Yongzhi.m
+.gitignore
