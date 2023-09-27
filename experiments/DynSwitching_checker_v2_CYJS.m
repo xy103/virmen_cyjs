@@ -37,7 +37,7 @@ end
 
 % --- RUNTIME code: executes on every iteration of the ViRMEn engine.
 function vr = runtimeCodeFun(vr)    
-%     vr = outputVirmenTrigger(vr); %08/20/21 CY added to aid sync b/w virmen and ephys
+
     vr.totIterations = vr.totIterations + 1; % use total iteration to decide high low state, not trialIterations!
     
     vr = changeVirmenHighLow(vr); % 02/09/2022 CY changed pulses to high-low states
