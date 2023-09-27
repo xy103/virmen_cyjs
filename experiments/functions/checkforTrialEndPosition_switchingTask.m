@@ -2,7 +2,7 @@
     % Check if we've reached the end of a trial in SYT switching task
     % JS 7/15/21
     % Note vr.rewardLength = 5 + floorLength + funnelLength; from init_switching_task
-    if vr.inITI == 0 && (vr.position(2) >= vr.rewardLength)
+    if vr.inITI == 0 && (vr.position(2) >= vr.rewardLength) % cannot see feedback until 205
         % Disable movement
         vr.dp = 0*vr.dp;
         % Enforce Reward Delay

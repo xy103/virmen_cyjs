@@ -18,4 +18,4 @@ thisIter(7) = lickInfo; % store signal from lick detector (ca 0 for no contact, 
 vr.trialIterations = vr.trialIterations + 1;
 vr.behaviorData([1:8,10],vr.trialIterations) = thisIter([1:8,10])';
 
-vr.behaviorData( 11:13, vr.trialIterations) = daqData(1:3); % record raw ball signal as well
+vr.behaviorData(11:13, vr.trialIterations) = daqData(1:3); % record raw ball signal as well
