@@ -1,7 +1,7 @@
 
-function code = Opto_DynSwitching_CYJS
+function code = MazeOpto_DynSwitching
 % Code for the ViRMEn experiment DynSwitching that also deliver optogenetic
-% inhibition using ramped light
+% inhibition using ramped light within maze 
 %   code = Linear Track   Returns handles to the functions that ViRMEn
 %   executes during engine initialization, runtime and termination.
 
