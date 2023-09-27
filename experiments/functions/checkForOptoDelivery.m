@@ -1,7 +1,7 @@
 function vr = checkForOptoDelivery(vr)
 
 % deliver optogenetic stimulation if current iter is one of the
-% predetermined opto start iter
+% predetermined opto start iter (darkWorld only)
 
 if ismember(vr.totIterations,vr.optoOnsetIter)
     % find out which voltage this iter should have
