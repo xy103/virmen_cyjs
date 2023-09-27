@@ -1,28 +1,27 @@
-function vr = checkForOptoDelivery_SW_ITI(vr)
+function vr = checkForOptoDelivery_SW(vr)
+% deliver optogenetic stimulation based on time elpased in vr.optoOnSec
 
-% deliver optogenetic stimulation if trial opto parameter meets set
-% threshold
-
+% at the start of the trial decide the upcoming trial's opto signal
+% probailistically
 if vr.trialIterations == 1
     vr.trialOptoVar = rand;
 end
 
-if vr.optoOn && (vr.optoOnSec ~= 0)% indicator for opto light
+if vr.optoOn % indicator for opto light
     vr.optoOnSec = vr.optoOnSec + vr.dt; % update how much time opto has been on
     % determine output voltage based on how much time has eplased since
     % light was turned on
-    if vr.optoOnSec < vr.optoRampDur % ramp up
-        vr.optoOutVoltage = (1/vr.optoRampDur * vr.optoOnSec)*vr.currentMaxVoltage;
-    elseif (vr.optoOnSec <= vr.optoRampDur+vr.optoLightDur) % sustained period
+    if vr.optoOnSec < vr.optoRampUpDur % ramp up
+        vr.optoOutVoltage = (1/vr.optoRampUpDur * vr.optoOnSec)*vr.currentMaxVoltage;
+    elseif (vr.optoOnSec <= vr.optoRampUpDur+vr.optoLightDur) % sustained period
         vr.optoOutVoltage = vr.currentMaxVoltage;
-    elseif (vr.optoOnSec <= vr.optoRampDur*2+vr.optoLightDur)% ramp down
-        vr.optoOutVoltage = (1-1/vr.optoRampDur * (vr.optoOnSec-vr.optoRampDur-vr.optoLightDur))*vr.currentMaxVoltage;
+    elseif (vr.optoOnSec <= vr.optoRampUpDur+vr.optoLightDur+vr.optoRampDownDur)% ramp down
+        vr.optoOutVoltage = (1-1/vr.optoRampDownDur * (vr.optoOnSec-vr.optoRampUpDur-vr.optoLightDur))*vr.currentMaxVoltage;
     else
         fprintf(" Light off after %.1f s\n",vr.optoOnSec)
         vr.optoOutVoltage = 0;
         vr.optoOn = 0; % turn opto off
         vr.optoOnSec = 0; % default to 0 since nan gives issue with comparison
-        vr.optoElapsed = 0;
     end
     outputSingleScan(vr.opto_ao,vr.optoOutVoltage)
 end
