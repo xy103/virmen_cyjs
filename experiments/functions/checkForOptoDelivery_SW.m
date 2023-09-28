@@ -1,22 +1,16 @@
 function vr = checkForOptoDelivery_SW(vr)
 % deliver optogenetic stimulation based on time elpased in vr.optoOnSec
 
-% at the start of the trial decide the upcoming trial's opto signal
-% probailistically
-if vr.trialIterations == 1
-    vr.trialOptoVar = rand;
-end
-
 if vr.optoOn % indicator for opto light
     vr.optoOnSec = vr.optoOnSec + vr.dt; % update how much time opto has been on
     % determine output voltage based on how much time has eplased since
     % light was turned on
     if vr.optoOnSec < vr.optoRampUpDur % ramp up
-        vr.optoOutVoltage = (1/vr.optoRampUpDur * vr.optoOnSec)*vr.currentMaxVoltage;
+        vr.optoOutVoltage = (1/vr.optoRampUpDur * vr.optoOnSec)*vr.optoMaxVoltage;
     elseif (vr.optoOnSec <= vr.optoRampUpDur+vr.optoLightDur) % sustained period
-        vr.optoOutVoltage = vr.currentMaxVoltage;
+        vr.optoOutVoltage = vr.optoMaxVoltage;
     elseif (vr.optoOnSec <= vr.optoRampUpDur+vr.optoLightDur+vr.optoRampDownDur)% ramp down
-        vr.optoOutVoltage = (1-1/vr.optoRampDownDur * (vr.optoOnSec-vr.optoRampUpDur-vr.optoLightDur))*vr.currentMaxVoltage;
+        vr.optoOutVoltage = (1-1/vr.optoRampDownDur * (vr.optoOnSec-vr.optoRampUpDur-vr.optoLightDur))*vr.optoMaxVoltage;
     else
         fprintf(" Light off after %.1f s\n",vr.optoOnSec)
         vr.optoOutVoltage = 0;
