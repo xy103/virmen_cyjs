@@ -1,12 +1,12 @@
 
 function code = ITIOpto_DynSwitching
 % Code for the ViRMEn experiment DynSwitching that deliver optogenetic
-% inhibition using ramped light within maze (ramping start in previous
-% trial ITI) 
+% inhibition using ramped light in ITI (ramping start after reaching end of
+% maze)
 
 % already assume checker_v2_grayarm set up 
 
-%   code = MazeOpto_DynSwitching  Returns handles to the functions that ViRMEn
+%   code = ITIOpto_DynSwitching  Returns handles to the functions that ViRMEn
 %   executes during engine initialization, runtime and termination.
 
 % Begin header code - DO NOT EDIT
@@ -28,16 +28,13 @@ function vr = initializationCodeFun(vr)
 
     % add allowCheckerAfterNTrials
     vr.allowCheckerAfterNTrials = eval(vr.exper.variables.allowCheckerAfterNTrials);
+    vr.nTrialsContinuousOpto = eval(vr.expr.variables.nTrialsContinuousOpto); % how many trials to deliver optogenetic inhibition
 
     % General setup functions
     vr = initDAQ(vr);
 
     % opto specific variables
     vr = initOpto_CY_SW(vr);
-    % init variables specific to this instantiation of opto delivery
-    vr.nextTrialOpto = false; % probabilistic opto delivery (updated at iteration 1 of each trial)
-    vr.optoThreshold = eval(vr.exper.variables.optoThreshold); % probability/threshold for opto stimulation (only valid for maze inhibition)
-    vr.optoTriggerPoint = eval(vr.exper.variables.optoTriggerPoint); % time point after which opto signal can be delivered
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
@@ -57,12 +54,6 @@ function vr = runtimeCodeFun(vr)
     % collect behavior data
     vr = collectBehaviorIter_full(vr);
 
-    % at the start of the trial decide if the upcoming trial will have opto probailistically
-    if vr.trialIterations == 1
-        nextTrialOptoProb = rand;
-        vr.nextTrialOpto = nextTrialOptoProb <= vr.optoThreshold;
-    end
-
     % determine if optogenetics is given and save output voltage
     vr = checkForOptoDelivery_SW(vr);
 
@@ -72,8 +63,9 @@ function vr = runtimeCodeFun(vr)
     % check for trial-terminating position and potentially deliver reward
     vr = checkforTrialEndPosition_switchingTask(vr); 
 
-    % if we are in ITI, handle whether and when opto ramp initiates
-    vr = checkITI_opto_start(vr);
+    % Function that starts ramping up inhibition at the end of
+    % the maze if a switch has occured
+    vr = checkMaze_opto_start(vr);
 
     % if we are in ITI, handle trial reset and switch block logic
     vr = checkITI_checker_v2_CY(vr);
