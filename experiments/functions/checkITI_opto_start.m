@@ -18,7 +18,7 @@ if vr.inITI == 1
             vr.nDeliveredOpto = vr.nDeliveredOpto+1;
             vr = checkForOptoDelivery_SW(vr); % call once to start outputting
             % print out update
-            fprintf("Start ramping up for light inhibition #%i,\t max voltage %.1f mV\t\n",vr.nDeliveredOpto,vr.optoMaxVoltage)
+            fprintf("**Start ramping up for light inhibition #%i,\t max voltage %.1f mV\t\n",vr.nDeliveredOpto,vr.optoMaxVoltage)
         end
     end
 end

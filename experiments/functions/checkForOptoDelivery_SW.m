@@ -12,7 +12,7 @@ if vr.optoOn % indicator for opto light
     elseif (vr.optoOnSec <= vr.optoRampUpDur+vr.optoLightDur+vr.optoRampDownDur)% ramp down
         vr.optoOutVoltage = (1-1/vr.optoRampDownDur * (vr.optoOnSec-vr.optoRampUpDur-vr.optoLightDur))*vr.optoMaxVoltage;
     else
-        fprintf(" Light off after %.1f s\n",vr.optoOnSec)
+        fprintf("**Light off after %.1f s\n",vr.optoOnSec)
         vr.optoOutVoltage = 0;
         vr.optoOn = 0; % turn opto off
         vr.optoOnSec = 0; % default to 0 since nan gives issue with comparison
