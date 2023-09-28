@@ -13,7 +13,7 @@ if vr.inITI == 1
         vr.numTrials = vr.numTrials + 1;
         % update live plots
         % vr = updateLivePlots(vr);
-        if contains(vr.isEphys,'n')
+        if ~vr.isEphys
             vr = plot_lick(vr);
         end
         %save trial data
