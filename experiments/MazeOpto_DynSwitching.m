@@ -35,7 +35,8 @@ function vr = initializationCodeFun(vr)
     % opto specific variables
     vr = initOpto_CY_SW(vr);
     % init variables specific to this instantiation of opto delivery
-    vr.trialOptoVar = 0; % initialize random variable for probabilistic opto delivery (updated at iteration 1 of each trial)
+    vr.nextTrialOpto = false; % probabilistic opto delivery (updated at iteration 1 of each trial)
+    vr.optoThreshold = eval(vr.exper.variables.optoThreshold); % probability/threshold for opto stimulation (only valid for maze inhibition)
     vr.optoTriggerPoint = eval(vr.exper.variables.optoTriggerPoint); % time point after which opto signal can be delivered
     
 %     Update Textboxes
@@ -71,10 +72,11 @@ function vr = runtimeCodeFun(vr)
     % check for trial-terminating position and potentially deliver reward
     vr = checkforTrialEndPosition_switchingTask(vr); 
 
-    % if we are in ITI, handle trial reset and switch block logic
-    vr = checkITI_checker_v2_CY(vr);
     % if we are in ITI, handle whether and when opto ramp initiates
     vr = checkITI_opto_start(vr);
+
+    % if we are in ITI, handle trial reset and switch block logic
+    vr = checkITI_checker_v2_CY(vr);
 
     % If we are 1) in a non-visually-guided trial 2) cue not revealed 3) past tgt hidepoint and 4) in ISI 
     vr = handle_target_hiding_cyjs(vr); 
