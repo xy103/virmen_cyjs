@@ -93,5 +93,9 @@ function vr = init_switching_task(vr)
     % initialize a bunch of counters (inITI, totIterations,
     % trialIterations etc.)
     vr = initCounters(vr);
+
+    % CY 9/28/2023 added a tracker for how many trials have elapsed since
+    % start/switch
+    vr.numTrialSinceSW = 0;
 end
 

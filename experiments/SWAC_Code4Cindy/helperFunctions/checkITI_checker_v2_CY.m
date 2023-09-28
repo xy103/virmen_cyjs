@@ -32,9 +32,9 @@ if vr.inITI == 1
         else
             temp_sw_trials = vr.Switches; 
         end
-        numTrialSinceSW = (vr.numTrials) - temp_sw_trials(end);
+        vr.numTrialSinceSW = (vr.numTrials) - temp_sw_trials(end);
 
-        if numTrialSinceSW > vr.allowCheckerAfterNTrials
+        if vr.numTrialSinceSW > vr.allowCheckerAfterNTrials
             % change to noChecker maze probabilistically
             rand_checker = rand;
             if rand_checker > vr.fractionNoChecker % give checker trial
