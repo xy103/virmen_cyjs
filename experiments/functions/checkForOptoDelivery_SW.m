@@ -2,7 +2,7 @@ function vr = checkForOptoDelivery_SW(vr)
 % deliver optogenetic stimulation based on time elpased in vr.optoOnSec
 
 if vr.optoOn % indicator for opto light
-    vr.optoOnSec = vr.optoOnSec + vr.dt; % update how much time opto has been on
+    vr.optoOnSec = toc(vr.optoStartTime);% vr.optoOnSec + vr.dt; % update how much time opto has been on
     % determine output voltage based on how much time has eplased since
     % light was turned on
     if vr.optoOnSec < vr.optoRampUpDur % ramp up

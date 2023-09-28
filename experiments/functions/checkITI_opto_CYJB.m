@@ -39,13 +39,6 @@ if vr.inITI == 1
         outputSingleScan(vr.opto_ao,vr.optoOutVoltage)
     end
 
-    % % if opto is running and the ITI ends, cut it off and save optoElapsed,
-    % % then feed to checkForOptoDelivery_SW for continuation of opto during
-    % % trial
-    % if vr.optoOn && vr.itiTime > vr.itiDur
-    %     vr.optoElapsed = vr.optoOnSec;
-    % end
-
     if vr.itiTime > vr.itiDur 
 
         % increase numtrials counter

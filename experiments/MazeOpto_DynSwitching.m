@@ -56,6 +56,12 @@ function vr = runtimeCodeFun(vr)
     % collect behavior data
     vr = collectBehaviorIter_full(vr);
 
+    % at the start of the trial decide if the upcoming trial will have opto probailistically
+    if vr.trialIterations == 1
+        nextTrialOptoProb = rand;
+        vr.nextTrialOpto = nextTrialOptoProb <= vr.optoThreshold;
+    end
+
     % determine if optogenetics is given and save output voltage
     vr = checkForOptoDelivery_SW(vr);
 
@@ -66,7 +72,9 @@ function vr = runtimeCodeFun(vr)
     vr = checkforTrialEndPosition_switchingTask(vr); 
 
     % if we are in ITI, handle trial reset and switch block logic
-    vr = checkITI_opto_CYJB(vr);
+    vr = checkITI_checker_v2_CY(vr);
+    % if we are in ITI, handle whether and when opto ramp initiates
+    vr = checkITI_opto_start(vr);
 
     % If we are 1) in a non-visually-guided trial 2) cue not revealed 3) past tgt hidepoint and 4) in ISI 
     vr = handle_target_hiding_cyjs(vr); 
