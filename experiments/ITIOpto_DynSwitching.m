@@ -28,7 +28,7 @@ function vr = initializationCodeFun(vr)
 
     % add allowCheckerAfterNTrials
     vr.allowCheckerAfterNTrials = eval(vr.exper.variables.allowCheckerAfterNTrials);
-    vr.nTrialsContinuousOpto = eval(vr.expr.variables.nTrialsContinuousOpto); % how many trials to deliver optogenetic inhibition
+    vr.nTrialsContinuousOpto = eval(vr.exper.variables.nTrialsContinuousOpto); % how many trials to deliver optogenetic inhibition
 
     % General setup functions
     vr = initDAQ(vr);
