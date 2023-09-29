@@ -8,7 +8,7 @@ function vr = dynamicSwitching_new_CA(vr)
 % 2) minWindow, minFraction correct: last X trials need a minimum of Y percent correct 
 % 3) last trial was correct
 
-if isempty(vr.Switches) == 1
+if isempty(vr.Switches)% == 1
     switches2use = 0;
 else
     switches2use = vr.Switches; 

@@ -1,7 +1,7 @@
 function vr = checkMaze_opto_start(vr)
 % current logic would always deliver inhibition for any trial post switch
 
-if isempty(vr.Switches) == 0 % a switch has occured
+if ~isempty(vr.Switches) % a switch has occured
 
     % only consider starting if within nTrialsContinuousOpto post switching
     if vr.numTrialSinceSW < vr.nTrialsContinuousOpto 
