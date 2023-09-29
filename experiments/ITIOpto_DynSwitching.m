@@ -84,6 +84,6 @@ function vr = terminationCodeFun(vr)
         delete(vr.ai),
         delete(vr.ao),
         delete(vr.opto_ao)
-        [vr,~] = collectTrialData_visualize(vr); % save behavior data
+        [vr,~] = collectTrialData_visualize_opto(vr); % save behavior data
     end
 end
