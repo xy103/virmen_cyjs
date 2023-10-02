@@ -5,6 +5,8 @@ vr.optoOn = 0; % initialize opto indicator to be 0 (change to 1 when opto is on)
 vr.optoOnSec = 0; % keep at 0 at init
 vr.optoStartTime = 0;
 vr.optoOutVoltage = 0; 
+vr.optoStartIter = []; % empty list that collects all opto starting iters
+vr.optoEndIter = []; % empty list that collects all opto end iters
 
 vr.optoMaxVoltage = eval(vr.exper.variables.optoMaxVoltage); % max voltage value
 

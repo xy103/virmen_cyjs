@@ -16,6 +16,7 @@ if vr.inITI == 1
             vr.optoOnSec = toc(vr.optoStartTime); % time in seconds since the current opto stimulation onset
 %             vr.optoOutVoltage = 0; % set output voltage to 0 to start
             vr.nDeliveredOpto = vr.nDeliveredOpto+1;
+            vr.optoStartIter = [vr.optoStartIter vr.totIterations]; % record which iter had opto starting
             vr = checkForOptoDelivery_SW(vr); % call once to start outputting
             % print out update
             fprintf("\n**Start ramping up for light inhibition #%i\t",vr.nDeliveredOpto)

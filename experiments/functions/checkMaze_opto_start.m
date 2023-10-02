@@ -9,7 +9,7 @@ if ~isempty(vr.Switches) % a switch has occured
         if  (vr.inRewardZone == 1) && ~vr.optoOn && (vr.inITI~=1) % waiting for feedback but not in iti yet
             vr.optoOn = 1; % turn opto on
             vr.optoStartTime = tic; % start time of current opto 
-%             vr.optoOnSec = toc(vr.optoStartTime); % time in seconds since the current opto stimulation onset
+            vr.optoStartIter = [vr.optoStartIter vr.totIterations]; % record which iter had opto starting
             vr.nDeliveredOpto = vr.nDeliveredOpto+1;
             vr = checkForOptoDelivery_SW(vr); % call once to start outputting
             % print out update

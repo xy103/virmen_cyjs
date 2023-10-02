@@ -16,6 +16,7 @@ if vr.optoOn % indicator for opto light
         vr.optoOutVoltage = 0;
         vr.optoOn = 0; % turn opto off
         vr.optoOnSec = 0; % default to 0 since nan gives issue with comparison
+        vr.optoEndIter = [vr.optoEndIter vr.totIterations]; % collect iter when opto ends
     end
     outputSingleScan(vr.opto_ao,vr.optoOutVoltage)
 end

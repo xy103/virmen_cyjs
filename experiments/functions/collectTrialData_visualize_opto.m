@@ -14,8 +14,14 @@ if vr.numTrials>1
     fprintf('\n Concatenated Data for %03.0f Trials \n',sum(trialData)),
     sessionDataName = fullfile(vr.fullPath,'sessionData');
     experData = struct(vr.exper);
-    save(sessionDataName,'sessionData','experData')
+    % Save starting and ending iters for opto light - optoData
+    optoData = struct();
+    optoData.optoStartIter = vr.optoStartIter;
+    optoData.optoEndIter = vr.optoEndIter;
+    save(sessionDataName,'sessionData','experData','optoData')
     % Make summary visualization
     switching_summary_visualization(sessionData,experData.variables)
     saveas(gcf,fullfile(vr.fullPath,'summary_visualization.png'))
+    % TODO: Make visualization for behavior with opto on and off
+    
 end
