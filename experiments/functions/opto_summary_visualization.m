@@ -100,6 +100,9 @@ for vel_ind = 1:2
         temp_tm = ts(relevant_ind)-opto_start_tm(i);
         temp_vel = vel_touse(relevant_ind);
         this_world = mod(opto_world_type(i),4);
+        if this_world ==0
+            this_world = 4;
+        end
         opto_tm_pts{this_world} = [opto_tm_pts{this_world} temp_tm];
         opto_vel{this_world} = [opto_vel{this_world} temp_vel];
         plot(temp_tm,temp_vel,Color=opto_colors(this_world,:));
@@ -118,6 +121,9 @@ for vel_ind = 1:2
         temp_tm = ts(relevant_ind)-normal_trials_comp_start_tm(i);
         temp_vel = vel_touse(relevant_ind);
         this_world = mod(normal_world_type(i),4);
+        if this_world == 0
+            this_world = 4;
+        end
         normal_tm_pts{this_world} = [normal_tm_pts{this_world} temp_tm];
         normal_vel{this_world} = [normal_vel{this_world} temp_vel];
         plot(temp_tm,temp_vel,Color=normal_colors(normal_world_type(i),:));
@@ -156,7 +162,7 @@ bar(bar_x,corr_normal_opto);
 box off
 ylabel("Frac correct")
 
-subplot(3,3,9) % color legend
+subplot(3,3,6) % color legend
 hold on
 world_labels = {};
 uniq_worlds = unique(all_world_type);
