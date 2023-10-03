@@ -23,5 +23,6 @@ if vr.numTrials>1
     switching_summary_visualization(sessionData,experData.variables)
     saveas(gcf,fullfile(vr.fullPath,'summary_visualization.png'))
     % TODO: Make visualization for behavior with opto on and off
-    
+    opto_summary_visualization(sessionData,experData,optoData)
+    saveas(gcf,fullfile(vr.fullPath,'opto_visualization.png'))
 end
