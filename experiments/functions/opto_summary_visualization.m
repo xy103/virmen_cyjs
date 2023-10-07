@@ -25,11 +25,15 @@ ramp_down_dur = str2double(parameters.variables.optoRampDownDur);
 ramp_sus_dur = str2double(parameters.variables.optoLightDur);
 opto_dur = ramp_up_dur + ramp_down_dur + ramp_sus_dur;
 
+% in case last opto trial is not saved
+optoData.optoEndIter = optoData.optoEndIter(optoData.optoEndIter<size(sessionData,2));
+optoData.optoStartIter = optoData.optoStartIter(1:length(optoData.optoEndIter));
+
 ts = cumsum(sessionData(10,:)); % timestamp
 iter_trial = sessionData(end,:);
 % opto start and end should be the same if ITI opto
 % opto_start_trials = sessionData(end,optoData.optoStartIter);
-opto_end_trials = sessionData(end,optoData.optoEndIter); % opto always end on the trial we want to perturb
+opto_end_trials = iter_trial(optoData.optoEndIter); % opto always end on the trial we want to perturb
 opto_start_tm = ts(optoData.optoStartIter);
 % opto_end_tm = ts(optoData.optoEndIter);
 % all trials
@@ -151,7 +155,10 @@ for vel_ind = 1:2
     % if we want to plotMeanSEM we need to bin by time
     % and separate this by world types!!!!!
     ax_tm(vel_ind+4) = subplot(3,n_col,vel_ind+n_col*2);hold on
-    for this_world = unique(all_world_type)
+    all_world_type_no_checker = all_world_type;
+    all_world_type_no_checker(all_world_type_no_checker>4) = all_world_type_no_checker(all_world_type_no_checker>4)-4;
+    
+    for this_world = unique(all_world_type_no_checker) 
         [mean_binned_a,sem_binned_a] = binByTimeOrPos(opto_tm_pts{this_world},opto_vel{this_world},tm_bin_edges);
         plotMeanSEM(tm_bin_ctrs,mean_binned_a,sem_binned_a,opto_colors(this_world,:))
         [mean_binned_a,sem_binned_a] = binByTimeOrPos(normal_tm_pts{this_world},normal_vel{this_world},tm_bin_edges);
@@ -217,7 +224,7 @@ for vel_ind = 1:2
         % if we want to plotMeanSEM we need to bin by time
         % and separate this by world types!!!!!
         ax_pos(vel_ind+4) = subplot(3,n_col,vel_ind+2+n_col*2);hold on
-        for this_world = unique(all_world_type)
+        for this_world = unique(all_world_type_no_checker)
             [mean_binned_a,sem_binned_a] = binByTimeOrPos(opto_pos{this_world},opto_pos_vel{this_world},pos_bin_edges);
             plotMeanSEM(pos_bin_ctrs,mean_binned_a,sem_binned_a,opto_colors(this_world,:))
             [mean_binned_a,sem_binned_a] = binByTimeOrPos(normal_pos{this_world},normal_pos_vel{this_world},pos_bin_edges);
@@ -248,7 +255,7 @@ ylabel("Frac correct")
 subplot(3,n_col,n_col*2) % color legend
 hold on
 world_labels = {};
-uniq_worlds = unique(all_world_type);
+uniq_worlds = unique(all_world_type_no_checker);
 for j = 1:length(uniq_worlds)
     this_world = uniq_worlds(j);
     world_labels = [world_labels ['opto ',world_names{this_world}] ['norm ',world_names{this_world}]];
