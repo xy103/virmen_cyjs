@@ -29,7 +29,7 @@ function switching_summary_visualization(session_data,parameters)
     iti_signal = session_data(8,:); 
     reward_signal = session_data(9,:); 
     t = cumsum(session_data(10,:)); 
-    trial_num = session_data(14,:);
+    trial_num = session_data(end,:);
 
     n_trials = max(trial_num); 
 
