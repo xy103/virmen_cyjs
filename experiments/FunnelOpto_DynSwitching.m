@@ -38,6 +38,7 @@ function vr = initializationCodeFun(vr)
     vr.thisTrialOpto = false; % probabilistic opto delivery (updated at iteration 1 of each trial)
     vr.optoThreshold = eval(vr.exper.variables.optoThreshold); % probability/threshold for opto stimulation (only valid for maze inhibition)
     vr.optoTriggerPos = eval(vr.exper.variables.optoTriggerPos); % time point after which opto signal can be delivered
+    vr.optoGiven = 0;
     
 %     Update Textboxes
     vr = printText2CommandLine(vr);
@@ -59,6 +60,7 @@ function vr = runtimeCodeFun(vr)
 
     % at the start of the trial decide if the upcoming trial will have opto probailistically
     if vr.trialIterations == 1
+        vr.optoGiven = 0; % reset at each trial
         thisTrialOptoProb = rand;
         vr.thisTrialOpto = thisTrialOptoProb <= vr.optoThreshold;
     end
