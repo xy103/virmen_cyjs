@@ -8,6 +8,7 @@ function opto_summary_visualization(sessionData,parameters,optoData)
 % should separate by turn type
 
 is_maze_opto = contains(parameters.name,'maze'); % inidicator to set up plots
+is_funnel_opto = contains(parameters.name,'funnel');
 
 % set up colors and account for cue and turn pairings
 [paired_map] = cbrewer('qual', 'Paired', 8); % 4 pairs of colors
@@ -28,6 +29,17 @@ opto_dur = ramp_up_dur + ramp_down_dur + ramp_sus_dur;
 % in case last opto trial is not saved
 optoData.optoEndIter = optoData.optoEndIter(optoData.optoEndIter<size(sessionData,2));
 optoData.optoStartIter = optoData.optoStartIter(1:length(optoData.optoEndIter));
+
+lat_vel = sessionData(2,:);
+forw_vel = sessionData(3,:);
+forw_pos = sessionData(6,:); % may need to cap at 205
+tm_bin_size = .05;
+tm_bin_edges = -tm_bin_size/2:tm_bin_size:opto_dur+tm_bin_size/2;
+tm_bin_ctrs = tm_bin_edges(1:end-1)+tm_bin_size/2;
+start_pos=10; end_pos = 205;
+pos_bin_size = 5;
+pos_bin_edges = -pos_bin_size/2:pos_bin_size:end_pos+pos_bin_size/2;
+pos_bin_ctrs = pos_bin_edges(1:end-1)+pos_bin_size/2;
 
 ts = cumsum(sessionData(10,:)); % timestamp
 iter_trial = sessionData(end,:);
@@ -54,36 +66,30 @@ normal_world_type = all_world_type(normal_trials);
 normal_trials_comp_start_tm = zeros(size(normal_trials));
 for i = 1:length(normal_trials)
     trial_tm = ts(iter_trial==normal_trials(i));
-    if is_maze_opto
-        tm_from_trial_end = trial_tm(end)-trial_tm;
-        normal_trials_comp_start_tm(i) = trial_tm(find(tm_from_trial_end<=ramp_up_dur,1));
+    if is_maze_opto % CY 10/16/2023 corrected logic to go backwards from trial start time
+        normal_trials_comp_start_tm(i) = trial_tm(1) - ramp_up_dur;
+    elseif is_funnel_opto
+        trial_pos = forw_pos(iter_trial==normal_trials(i));
+        normal_trials_comp_start_tm(i) = trial_tm(find(trial_pos>=str2num(parameters.variables.optoTriggerPos),1));
     else % light starts while waiting for feedback and reward
         normal_trials_comp_start_tm(i) = trial_tm(find(sessionData(6,iter_trial==normal_trials(i))>=rewardLength,1));
     end
 end
 
-lat_vel = sessionData(2,:);
-forw_vel = sessionData(3,:);
-forw_pos = sessionData(6,:); % may need to cap at 205
-tm_bin_size = .05;
-tm_bin_edges = -tm_bin_size/2:tm_bin_size:opto_dur+tm_bin_size/2;
-tm_bin_ctrs = tm_bin_edges(1:end-1)+tm_bin_size/2;
-start_pos=10; end_pos = 205;
-pos_bin_size = 5;
-pos_bin_edges = -pos_bin_size/2:pos_bin_size:end_pos+pos_bin_size/2;
-pos_bin_ctrs = pos_bin_edges(1:end-1)+pos_bin_size/2;
-
 %%
 % we already know when opto starts and ends (in iters) from optoData
 title_options = {'Lateral','Forward'};
 opto_names = {'Normal','Opto'};
-
-n_col = 3+2*is_maze_opto;
-f = figure('Position', [300 200 900+is_maze_opto*2*300 750]); % if is_maze_opto allow space for two extra columns
+plot_maze_pos = is_maze_opto || is_funnel_opto;
+n_col = 3+2*plot_maze_pos;
+f = figure('Position', [300 200 900+plot_maze_pos*2*300 750]); % if is_maze_opto allow space for two extra columns
 ax_tm = gobjects(6,1); % shared by both plots
 
 if is_maze_opto
     sgtitle({'Maze Inhibition','Opto ramps up in the previous ITI for 0.5s'})
+    ax_pos = gobjects(6,1);
+elseif is_funnel_opto
+    sgtitle({'Funnel Inhibition','Opto ramps up after position 80 (half way of stem)'})
     ax_pos = gobjects(6,1);
 else
     sgtitle({'ITI Inhibition','Opto ramps up while waiting for visual feedback for 0.5s'})
@@ -171,9 +177,9 @@ for vel_ind = 1:2
     xlim([0 opto_dur])
     title([title_options{vel_ind},' Velocity Mean ',char(177),' SEM'])
 
-    % TODO: plot velocity by forward position to see if effects carry
+    % plot velocity by forward position to see if effects carry
     % over (if is_maze_opto is true)
-    if is_maze_opto
+    if plot_maze_pos
         for is_opto = 0:1
             save_pos = {};
             save_pos_vel = {};
