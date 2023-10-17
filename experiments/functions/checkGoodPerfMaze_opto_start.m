@@ -2,7 +2,7 @@ function vr = checkGoodPerfMaze_opto_start(vr)
 % a switch must have happened, and we're now at the good performance period
 % indicated by more than .9 correct in the last 10 trials
 
-if ~isempty(vr.Switches) % a switch has occured
+if ~isempty(vr.Switches)&& (vr.numTrialSinceSW > vr.goodPerfWindowBeforeOpto) % a switch has occured and we're at least 10 trials post it
     window2check = (vr.numTrials - vr.goodPerfWindowBeforeOpto) : vr.numTrials;
     if sum(vr.Rewards(window2check))/numel(window2check) >= vr.goodPerfFracCorrect  % condition 2)
         if (vr.Rewards(vr.numTrials) == 1) && ~vr.numTrialcurrentBlockOpto % condition 3)
