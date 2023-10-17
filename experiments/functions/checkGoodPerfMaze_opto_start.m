@@ -25,5 +25,7 @@ if vr.numTrialcurrentBlockOpto > 0
             % print out update
             fprintf("**Good performance ITI opto: wait for feedback & ramping up for light inhibition #%i\n",vr.nDeliveredOpto)
         end
+    else % already past nTrialContinuousOpto
+        vr.numTrialcurrentBlockOpto = 0; % reset to 0
     end
 end
