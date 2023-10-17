@@ -4,10 +4,13 @@ function vr = checkGoodPerfMaze_opto_start(vr)
 
 % a switch has occured and we're at least 10 trials post it
 if ~isempty(vr.Switches)&& (vr.numTrialSinceSW > vr.goodPerfWindowBeforeOpto) && ~vr.numTrialcurrentBlockOpto
-    window2check = (vr.numTrials - vr.goodPerfWindowBeforeOpto) : vr.numTrials;
-    if sum(vr.Rewards(window2check))/numel(window2check) >= vr.goodPerfFracCorrect  % condition 2)
-        if (vr.Rewards(vr.numTrials) == 1) % condition 3)
-            vr.numTrialcurrentBlockOpto = 1;
+    trials_since_last_opto = vr.numTrials - vr.lastOptoTrial;
+    if trials_since_last_opto > vr.minTrialsOptoWait
+        window2check = (vr.numTrials - vr.goodPerfWindowBeforeOpto) : vr.numTrials;
+        if sum(vr.Rewards(window2check))/numel(window2check) >= vr.goodPerfFracCorrect  % condition 2)
+            if (vr.Rewards(vr.numTrials) == 1) % condition 3)
+                vr.numTrialcurrentBlockOpto = 1;
+            end
         end
     end
 end
@@ -24,6 +27,7 @@ if vr.numTrialcurrentBlockOpto > 0
                 vr.optoStartIter = [vr.optoStartIter vr.totIterations]; % record which iter had opto starting
                 vr.nDeliveredOpto = vr.nDeliveredOpto+1;
                 vr.numTrialcurrentBlockOpto = vr.numTrialcurrentBlockOpto +1;
+                vr.lastOptoTrial = vr.numTrials;
                 vr = checkForOptoDelivery_SW(vr); % call once to start outputting
                 % print out update
                 fprintf("**Good performance ITI opto: wait for feedback & ramping up for light inhibition #%i\n",vr.nDeliveredOpto)

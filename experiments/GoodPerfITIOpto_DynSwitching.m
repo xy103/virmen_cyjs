@@ -31,8 +31,9 @@ function vr = initializationCodeFun(vr)
     vr.nTrialsContinuousOpto = eval(vr.exper.variables.nTrialsContinuousOpto); % how many trials to deliver optogenetic inhibition
     vr.goodPerfWindowBeforeOpto = eval(vr.exper.variables.goodPerfWindowBeforeOpto);
     vr.goodPerfFracCorrect = eval(vr.exper.variables.goodPerfFracCorrect);
+    vr.minTrialsOptoWait = eval(vr.exper.variables.minTrialsOptoWait);
     vr.numTrialcurrentBlockOpto = 0;
-
+    vr.lastOptoTrial = 0;
     % General setup functions
     vr = initDAQ(vr);
 
