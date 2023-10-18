@@ -1,5 +1,5 @@
 
-function code = GoodPerfITIOpto_DynSwitching
+function code = HighPerfITIOpto_DynSwitching
 % Code for the ViRMEn experiment DynSwitching that deliver optogenetic
 % inhibition using ramped light in ITI (ramping start after reaching end of
 % maze)
@@ -69,7 +69,7 @@ function vr = runtimeCodeFun(vr)
 
     % Function that starts ramping up inhibition at the end of
     % the maze if a switch has occured
-    vr = checkGoodPerfMaze_opto_start(vr);
+    vr = checkHighPerfMaze_opto_start(vr);
 
     % if we are in ITI, handle trial reset and switch block logic
     vr = checkITI_checker_v2_CY(vr);

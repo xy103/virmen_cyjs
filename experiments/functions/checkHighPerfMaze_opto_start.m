@@ -1,4 +1,4 @@
-function vr = checkGoodPerfMaze_opto_start(vr)
+function vr = checkHighPerfMaze_opto_start(vr)
 % a switch must have happened, and we're now at the good performance period
 % indicated by more than .9 correct in the last 10 trials
 
