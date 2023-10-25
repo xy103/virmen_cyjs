@@ -8,13 +8,25 @@ if vr.optoOn % indicator for opto light
     % light was turned on
     if vr.optoOnSec < vr.optoRampUpDur % ramp up
         vr.optoOutVoltage = (1/vr.optoRampUpDur * vr.optoOnSec)*vr.optoMaxVoltage;
-    elseif (vr.position(2) < vr.floorLength) && (vr.optoOnSec < vr.maxOptoTmBeforeRampDown)% sustained period, not exceed max time allowed for opto yet
-        vr.optoOutVoltage = vr.optoMaxVoltage;
-    elseif vr.rampDownStartSec==0 && ((vr.optoOnSec >= vr.maxOptoTmBeforeRampDown) || (vr.position(2) >= vr.floorLength)) % have not started ramp down and need to
+    elseif vr.optoOnSec < vr.maxOptoTmBeforeRampDown % has not exceed max time allowed for opto yet
+        if vr.position(2) < vr.floorLength % sustained period
+            vr.optoOutVoltage = vr.optoMaxVoltage;
+        else %  position exceed stem
+            if vr.rampDownStartSec==0 % start ramp down if not already started
+                vr.rampDownStartSec = tic; % keep track of when ramp down started 
+            end
+            vr.optoOutVoltage = (1-1/vr.optoRampDownDur * toc(vr.rampDownStartSec))*vr.optoMaxVoltage;
+        end
+    elseif vr.optoOnSec >= vr.maxOptoTmBeforeRampDown
+        % start ramp down if not already
+        if vr.rampDownStartSec==0 % start ramp down if not already started
+            vr.rampDownStartSec = tic; % keep track of when ramp down started 
+        end
+            vr.rampDownStartSec==0 && ((vr.optoOnSec >= vr.maxOptoTmBeforeRampDown)||(vr.position(2) > vr.floorLength)) % have not started ramp down and need to
         % start ramping down after max time has past or reached funnel
         vr.rampDownStartSec = tic; % keep track of when ramp down started 
         vr.optoOutVoltage = (1-1/vr.optoRampDownDur * toc(vr.rampDownStartSec))*vr.optoMaxVoltage;
-    elseif vr.rampDownStartSec>0 && toc(vr.rampDownStartSec)<vr.optoRampDownDur % ramp down has already started and not ended yet
+    elseif vr.rampDownStartSec~=0 && toc(vr.rampDownStartSec)<vr.optoRampDownDur % ramp down has already started and not ended yet
         vr.optoOutVoltage = (1-1/vr.optoRampDownDur * toc(vr.rampDownStartSec))*vr.optoMaxVoltage;
     else
         fprintf("**Light off after %.1f s\n",vr.optoOnSec)

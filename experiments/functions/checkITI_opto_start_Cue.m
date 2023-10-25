@@ -14,6 +14,7 @@ if vr.inITI == 1
             vr.optoOn = 1; % turn opto on
             vr.optoStartTime = tic; % start time of current opto 
             vr.optoOnSec = toc(vr.optoStartTime); % time in seconds since the current opto stimulation onset
+            vr.rampDownStartSec = 0; % init
 %             vr.optoOutVoltage = 0; % set output voltage to 0 to start
             vr.nDeliveredOpto = vr.nDeliveredOpto+1;
             vr.optoStartIter = [vr.optoStartIter vr.totIterations]; % record which iter had opto starting
