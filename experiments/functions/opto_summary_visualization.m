@@ -9,6 +9,7 @@ function opto_summary_visualization(sessionData,parameters,optoData)
 
 is_maze_opto = contains(parameters.name,'maze'); % inidicator to set up plots
 is_funnel_opto = contains(parameters.name,'funnel');
+is_cue_opto = contains(parameters.name,'cue');
 
 % set up colors and account for cue and turn pairings
 [paired_map] = cbrewer('qual', 'Paired', 8); % 4 pairs of colors
@@ -66,7 +67,7 @@ normal_world_type = all_world_type(normal_trials);
 normal_trials_comp_start_tm = zeros(size(normal_trials));
 for i = 1:length(normal_trials)
     trial_tm = ts(iter_trial==normal_trials(i));
-    if is_maze_opto % CY 10/16/2023 corrected logic to go backwards from trial start time
+    if is_maze_opto || is_cue_opto % CY 10/16/2023 corrected logic to go backwards from trial start time
         normal_trials_comp_start_tm(i) = trial_tm(1) - ramp_up_dur;
     elseif is_funnel_opto
         trial_pos = forw_pos(iter_trial==normal_trials(i));
@@ -80,7 +81,7 @@ end
 % we already know when opto starts and ends (in iters) from optoData
 title_options = {'Lateral','Forward'};
 opto_names = {'Normal','Opto'};
-plot_maze_pos = is_maze_opto || is_funnel_opto;
+plot_maze_pos = is_maze_opto || is_funnel_opto || is_cue_opto;
 n_col = 3+2*plot_maze_pos;
 f = figure('Position', [300 200 900+plot_maze_pos*2*300 750]); % if is_maze_opto allow space for two extra columns
 ax_tm = gobjects(6,1); % shared by both plots
@@ -90,6 +91,9 @@ if is_maze_opto
     ax_pos = gobjects(6,1);
 elseif is_funnel_opto
     sgtitle({'Funnel Inhibition','Opto ramps up after position 80 (half way of stem)'})
+    ax_pos = gobjects(6,1);
+elseif is_cue_opto
+    sgtitle({'Cue stem Inhibition','Opto ramps up in the previous ITI for 0.5s)'})
     ax_pos = gobjects(6,1);
 else
     sgtitle({'ITI Inhibition','Opto ramps up while waiting for visual feedback for 0.5s'})
