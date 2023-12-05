@@ -3,6 +3,6 @@ function turnOffOpto
     s = daq.createSession('ni'); % opto light signal
     s.addAnalogOutputChannel('dev1','ao1','Voltage');
     outputSingleScan(s,0); % set to 0 to avoid random light on
-    print('Turned off opto signal!')
+    disp('Turned off opto signal!')
     delete(s)
 end
