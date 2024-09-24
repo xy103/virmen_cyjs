@@ -155,7 +155,7 @@ function switching_summary_visualization(session_data,parameters)
     end
 
     plot(smoothdata(cat(1,switch_reward{:}),2,'gaussian',10)','color',[.5 .5 .5],'linewidth',1)
-    plot(smoothdata(mean(cat(1,switch_reward{:})),'gaussian',10),'color','k','linewidth',2)
+    plot(smoothdata(mean(cat(1,switch_reward{:}),'omitnan'),'gaussian',10),'color','k','linewidth',2)
     xline(pre_switch,'k--')
     xticks([0 pre_switch pre_switch + post_switch / 2 pre_switch + post_switch])
     xticklabels([0 pre_switch pre_switch + post_switch / 2 pre_switch + post_switch] - pre_switch)
