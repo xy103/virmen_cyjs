@@ -19,12 +19,12 @@ if vr.optoOn % indicator for opto light
     vr.optoOnSec = vr.optoOnSec + vr.dt; % update how much time opto has been on
     % determine output voltage based on how much time has eplased since
     % light was turned on
-    if vr.optoOnSec < vr.optoRampDur % ramp up
-        vr.optoOutVoltage = (1/vr.optoRampDur * vr.optoOnSec)*vr.currentMaxVoltage;
-    elseif (vr.optoOnSec <= vr.optoRampDur+vr.optoLightDur) % sustained period
+    if vr.optoOnSec < vr.optoRampUpDur % ramp up
+        vr.optoOutVoltage = (1/vr.optoRampUpDur * vr.optoOnSec)*vr.currentMaxVoltage;
+    elseif (vr.optoOnSec <= vr.optoRampUpDur+vr.optoLightDur) % sustained period
         vr.optoOutVoltage = vr.currentMaxVoltage;
-    elseif (vr.optoOnSec <= vr.optoRampDur*2+vr.optoLightDur)% ramp down
-        vr.optoOutVoltage = (1-1/vr.optoRampDur * (vr.optoOnSec-vr.optoRampDur-vr.optoLightDur))*vr.currentMaxVoltage;
+    elseif (vr.optoOnSec <= vr.optoRampUpDur+vr.optoLightDur+vr.optoRampDownDur)% ramp down
+        vr.optoOutVoltage = (1-1/vr.optoRampDownDur * (vr.optoOnSec-vr.optoRampUpDur-vr.optoLightDur))*vr.currentMaxVoltage;
     else
         fprintf(" Light off after %.1f s\n",vr.optoOnSec)
         vr.optoOutVoltage = 0;

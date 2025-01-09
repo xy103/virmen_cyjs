@@ -6,4 +6,5 @@ transformations/transformToroidalMex_new.c
 *.asv
 experiments/functions/getRigInfo.m
 experiments/functions/initDAQ_for_Yongzhi.m
+experiments/fix_opto_plots.m
 .gitignore
